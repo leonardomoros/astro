@@ -1,14 +1,14 @@
 ---
-import '../styles/global.css';
-import HomePage from '../components/HomePage';
-import SEO from '../components/SEO.astro';
-import seoData from '../data/seo.json';
+import '../../styles/global.css';
+import HomePage from '../../components/HomePage';
+import SEO from '../../components/SEO.astro';
+import seoData from '../../data/seo.json';
 
-const meta = seoData.home.es;
+const meta = seoData.home.en;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -20,10 +20,10 @@ const meta = seoData.home.es;
       description={meta.description}
       slug={meta.slug}
       alternateSlug={meta.alternateSlug}
-      lang="es"
+      lang="en"
     />
   </head>
   <body>
-    <HomePage client:load />
+    <HomePage client:load initialLang="en" />
   </body>
 </html>

@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ── Theme variables ─────────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0f0f;
+  --bg-card:     #161616;
+  --bg-chrome:   #1c1c1c;
+  --text:        #f8fafc;
+  --text-muted:  #71717a;
+  --border:      rgba(255,255,255,0.07);
+  --accent:      #a855f7;
+}
+
+:root.light {
+  --bg:          #f9f9fb;
+  --bg-card:     #ffffff;
+  --bg-chrome:   #f1f1f4;
+  --text:        #0f0f0f;
+  --text-muted:  #52525b;
+  --border:      rgba(0,0,0,0.08);
+  --accent:      #9333ea;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+/* ── JetBrains Mono utility ───────────────────────────────────────────── */
+.font-jetbrains {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Eyebrow label — small purple monospaced text above section headings */
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+@layer utilities {
+  /* Purple → Magenta gradient text (primary accent) */
+  .gradient-text {
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subtle gradient border via pseudo-element */
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(168,85,247,0.25), rgba(236,72,153,0.25));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Card lift on hover */
+  .card-hover {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  }
+
+  /* ── Scroll-reveal (single element) ─────────── */
+  .reveal-hidden {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger variants for children inside a reveal block */
+  .reveal-visible [data-reveal-delay="1"] { transition-delay: 0.1s; }
+  .reveal-visible [data-reveal-delay="2"] { transition-delay: 0.2s; }
+  .reveal-visible [data-reveal-delay="3"] { transition-delay: 0.3s; }
+  .reveal-visible [data-reveal-delay="4"] { transition-delay: 0.4s; }
+  .reveal-visible [data-reveal-delay="5"] { transition-delay: 0.5s; }
+
+  /* ── Stagger reveal for stat cards (wrapper only — keeps hover transforms independent) ── */
+  .stat-row {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+    transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .stat-row.stat-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Methodology phase content fade-in ───────────────────────────────── */
+@keyframes phase-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-phase-in {
+  animation: phase-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* ── Floating card animation ──────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+  will-change: transform;
+}

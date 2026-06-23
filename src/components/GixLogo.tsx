@@ -1,0 +1,41 @@
+interface GixLogoProps {
+  className?: string;
+}
+
+export default function GixLogo({ className = 'h-8 w-auto' }: GixLogoProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 513.2 233.14"
+      className={className}
+      aria-label="GixLabs"
+    >
+      {/* G — magenta fill */}
+      <path fill="#d62b84" d="M240.19,20.39l46.2,43.76V176l-46.2,46.19S239.38,20.39,240.19,20.39Z" />
+
+      {/* IX — outline strokes (currentColor adapts to dark/light theme) */}
+      <polyline
+        fill="none"
+        stroke="currentColor"
+        strokeMiterlimit="10"
+        strokeWidth="2"
+        points="273.83 17.95 325.7 17.95 391.75 89.28 461.45 18.76 509.68 18.76 416.07 118.86 510.89 220.17 458.62 220.17 273.83 17.95"
+      />
+
+      {/* Blue fill shape */}
+      <polyline fill="#689cd3" points="386.65 155.24 324.48 219.36 272.21 219.36 360.71 127.28" />
+
+      {/* G arc — outline stroke (currentColor) */}
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeMiterlimit="10"
+        strokeWidth="2"
+        d="M219.71,158.5c.08,29.48-.07,5,.31,34.45,0,2.54-41.15,31.66-59.59,35.35-28.67,5.74-57.13,5.62-85-4.26C32.74,208.9,3.93,168.44,1.22,124.4-2.72,60.07,46,17.27,88.12,6.39,128.4-4,166.81,0,201.92,24c2.84,1.93,5.33,4.35,8.69,7.13L181.12,62.87c-4.83-3-9-5.79-13.27-8.34-32.09-19.12-78.27-14-102.67,13.53-14.24,16-19.72,34.67-18.09,55.93,2.58,33.6,33.69,63,68.86,65.29,17.61,1.15,34.61-.44,50.92-7.4,2.6-1.12,5-2.62,7.43-3.89V158.5"
+      />
+
+      {/* G horizontal bar — purple fill */}
+      <path fill="#7c5aa2" d="M220.86,146V99.53H115.71V146Z" />
+    </svg>
+  );
+}

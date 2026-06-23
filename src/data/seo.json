@@ -1,0 +1,30 @@
+{
+  "home": {
+    "es": {
+      "title": "Gixlabs — Agencia de Ingeniería Digital | Desarrollo Web, SEO y Marketing",
+      "description": "Construimos plataformas digitales que transforman tu presencia online en crecimiento. Desarrollo web, SEO, email marketing y publicidad pagada en un solo ecosistema digital.",
+      "slug": "/",
+      "alternateSlug": "/en/"
+    },
+    "en": {
+      "title": "Gixlabs — Digital Engineering Agency | Web Development, SEO & Marketing",
+      "description": "We build digital platforms that transform online presence into growth. Web development, SEO, email marketing, and paid advertising in one digital ecosystem.",
+      "slug": "/en/",
+      "alternateSlug": "/"
+    }
+  },
+  "services": {
+    "es": {
+      "title": "Servicios Digitales — Desarrollo Web, SEO, Marketing | Gixlabs",
+      "description": "Todo lo que necesitas para crecer en línea: desarrollo web, estrategia SEO, email marketing, publicidad pagada y landing pages, todo en un solo lugar.",
+      "slug": "/servicios/",
+      "alternateSlug": "/en/services/"
+    },
+    "en": {
+      "title": "Digital Services — Web Development, SEO, Marketing | Gixlabs",
+      "description": "Everything you need to grow online: web development, SEO strategy, email marketing, paid advertising, and landing pages, all in one place.",
+      "slug": "/en/services/",
+      "alternateSlug": "/servicios/"
+    }
+  }
+}

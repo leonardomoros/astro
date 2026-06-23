@@ -1,0 +1,66 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  alternateSlug: string;
+  lang: 'es' | 'en';
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  slug,
+  alternateSlug,
+  lang,
+  ogImage = 'https://gixlabs.com/og-default.jpg',
+  noindex = false,
+} = Astro.props;
+
+const BASE = 'https://gixlabs.com';
+const canonical = `${BASE}${slug}`;
+const esSlug = lang === 'es' ? slug : alternateSlug;
+const enSlug = lang === 'en' ? slug : alternateSlug;
+const locale  = lang === 'es' ? 'es_ES' : 'en_US';
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Gixlabs',
+  url: BASE,
+  logo: `${BASE}/logo.png`,
+  description: 'Agencia de ingeniería digital especializada en desarrollo web, SEO, email marketing y publicidad pagada para pequeñas y medianas empresas.',
+  email: 'hello@gixlabs.com',
+  sameAs: [],
+};
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<link rel="alternate" hreflang="es"        href={`${BASE}${esSlug}`} />
+<link rel="alternate" hreflang="en"        href={`${BASE}${enSlug}`} />
+<link rel="alternate" hreflang="x-default" href={`${BASE}${esSlug}`} />
+
+<meta property="og:type"        content="website" />
+<meta property="og:title"       content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url"         content={canonical} />
+<meta property="og:image"       content={ogImage} />
+<meta property="og:locale"      content={locale} />
+<meta property="og:site_name"   content="Gixlabs" />
+
+<meta name="twitter:card"        content="summary_large_image" />
+<meta name="twitter:title"       content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image"       content={ogImage} />
+
+{noindex
+  ? <meta name="robots" content="noindex, nofollow" />
+  : <meta name="robots" content="index, follow" />
+}
+
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />

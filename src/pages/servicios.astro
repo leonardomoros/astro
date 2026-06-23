@@ -1,0 +1,92 @@
+---
+import '../styles/global.css';
+import ServicesPage from '../components/ServicesPage';
+import SEO from '../components/SEO.astro';
+import JsonLd from '../components/JsonLd.astro';
+import seoData from '../data/seo.json';
+
+const meta = seoData.services.es;
+
+const BASE = 'https://gixlabs.com';
+
+const servicesList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: [
+    {
+      '@type': 'ListItem', position: 1,
+      item: { '@type': 'Service', name: 'Desarrollo Web', provider: { '@type': 'Organization', name: 'Gixlabs' },
+        description: 'Sitios web personalizados de alto rendimiento, diseñados para velocidad, escalabilidad y conversión.',
+        url: `${BASE}/servicios/desarrollo-web/` },
+    },
+    {
+      '@type': 'ListItem', position: 2,
+      item: { '@type': 'Service', name: 'Estrategia SEO', provider: { '@type': 'Organization', name: 'Gixlabs' },
+        description: 'Posicionamiento orgánico sostenible con auditorías técnicas, contenido optimizado y link building.',
+        url: `${BASE}/servicios/seo/` },
+    },
+    {
+      '@type': 'ListItem', position: 3,
+      item: { '@type': 'Service', name: 'Landing Pages', provider: { '@type': 'Organization', name: 'Gixlabs' },
+        description: 'Páginas de conversión diseñadas para capturar leads y maximizar el ROI de tus campañas.',
+        url: `${BASE}/servicios/landing-pages/` },
+    },
+    {
+      '@type': 'ListItem', position: 4,
+      item: { '@type': 'Service', name: 'Email Marketing', provider: { '@type': 'Organization', name: 'Gixlabs' },
+        description: 'Secuencias automatizadas, newsletters y campañas segmentadas que convierten suscriptores en clientes.',
+        url: `${BASE}/servicios/email-marketing/` },
+    },
+    {
+      '@type': 'ListItem', position: 5,
+      item: { '@type': 'Service', name: 'Publicidad Pagada', provider: { '@type': 'Organization', name: 'Gixlabs' },
+        description: 'Campañas de Google Ads y Meta Ads optimizadas para reducir el CPA y escalar tus resultados.',
+        url: `${BASE}/servicios/publicidad-pagada/` },
+    },
+    {
+      '@type': 'ListItem', position: 6,
+      item: { '@type': 'Service', name: 'Optimización Web', provider: { '@type': 'Organization', name: 'Gixlabs' },
+        description: 'Auditorías de rendimiento, Core Web Vitals y mejoras técnicas para sitios existentes.',
+        url: `${BASE}/servicios/optimizacion-web/` },
+    },
+    {
+      '@type': 'ListItem', position: 7,
+      item: { '@type': 'Service', name: 'Diseño UX/UI', provider: { '@type': 'Organization', name: 'Gixlabs' },
+        description: 'Interfaces centradas en el usuario que combinan estética y funcionalidad para maximizar la conversión.',
+        url: `${BASE}/servicios/diseno-ux-ui/` },
+    },
+  ],
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio',    item: `${BASE}/` },
+    { '@type': 'ListItem', position: 2, name: 'Servicios', item: `${BASE}/servicios/` },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO
+      title={meta.title}
+      description={meta.description}
+      slug={meta.slug}
+      alternateSlug={meta.alternateSlug}
+      lang="es"
+    />
+    <JsonLd schema={servicesList} />
+    <JsonLd schema={breadcrumb} />
+  </head>
+  <body>
+    <ServicesPage client:load />
+  </body>
+</html>
