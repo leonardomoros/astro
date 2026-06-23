@@ -63,7 +63,7 @@ export default function ServicesGrid({ t }: ServicesGridProps) {
 
             return (
               <div
-                key={item.href}
+                key={item.icon}
                 data-service-card
                 className={`stat-row ${isLast ? 'sm:col-span-2 lg:col-span-1 lg:col-start-2' : ''}`}
               >

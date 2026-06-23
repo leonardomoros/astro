@@ -24,6 +24,7 @@ export default function ServicesPage({ initialLang = 'es' }: ServicesPageProps) 
 
   const t  = servicesTranslations[lang];
   const ht = translations[lang];
+  const alternateHref = lang === 'es' ? '/en/services/' : '/servicios/';
 
   useEffect(() => {
     document.documentElement.classList.toggle('light', theme === 'light');
@@ -35,8 +36,8 @@ export default function ServicesPage({ initialLang = 'es' }: ServicesPageProps) 
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
-      <Nav lang={lang} setLang={setLang} t={ht.nav} theme={theme} toggleTheme={toggleTheme} />
-      <ServicesHero t={t.hero} />
+      <Nav lang={lang} setLang={setLang} t={ht.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
+      <ServicesHero t={t.hero} lang={lang} />
       <ServicesGrid t={t.servicesGrid} />
       <ServicesBanner t={t.banner} />
       <ServicesProcess t={t.process} />

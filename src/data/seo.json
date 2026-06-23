@@ -26,5 +26,47 @@
       "slug": "/en/services/",
       "alternateSlug": "/servicios/"
     }
+  },
+  "landingPages": {
+    "es": {
+      "title": "Landing Pages de Alta Conversión | Diseño y Desarrollo | Gixlabs",
+      "description": "Diseñamos landing pages estratégicas que convierten visitas en clientes. A/B testing, velocidad extrema, formularios inteligentes e integración con tu CRM.",
+      "slug": "/servicios/landing-pages/",
+      "alternateSlug": "/en/services/landing-pages/"
+    },
+    "en": {
+      "title": "High-Converting Landing Pages | Design & Development | Gixlabs",
+      "description": "We design strategic landing pages that turn visitors into customers. A/B testing, extreme speed, smart forms, and CRM integration.",
+      "slug": "/en/services/landing-pages/",
+      "alternateSlug": "/servicios/landing-pages/"
+    }
+  },
+  "seoStrategy": {
+    "es": {
+      "title": "Estrategia SEO | Posicionamiento en Google | Gixlabs",
+      "description": "Posicionamos tu sitio en los primeros resultados de Google con auditorías técnicas, investigación de palabras clave, SEO on-page y construcción de autoridad.",
+      "slug": "/servicios/estrategia-seo/",
+      "alternateSlug": "/en/services/seo-strategy/"
+    },
+    "en": {
+      "title": "SEO Strategy | Google Rankings & Organic Traffic | Gixlabs",
+      "description": "We rank your site at the top of Google with technical audits, keyword research, on-page SEO, and authority building that drive sustainable organic traffic.",
+      "slug": "/en/services/seo-strategy/",
+      "alternateSlug": "/servicios/estrategia-seo/"
+    }
+  },
+  "webDev": {
+    "es": {
+      "title": "Desarrollo Web a Medida | Astro, React, Next.js | Gixlabs",
+      "description": "Diseñamos y desarrollamos sitios web rápidos, escalables y optimizados para conversión. Código limpio, SEO técnico incluido y soporte post-lanzamiento.",
+      "slug": "/servicios/desarrollo-web/",
+      "alternateSlug": "/en/services/web-development/"
+    },
+    "en": {
+      "title": "Custom Web Development | Astro, React, Next.js | Gixlabs",
+      "description": "We design and build fast, scalable websites optimized for conversion. Clean code, technical SEO included, and post-launch support.",
+      "slug": "/en/services/web-development/",
+      "alternateSlug": "/servicios/desarrollo-web/"
+    }
   }
 }

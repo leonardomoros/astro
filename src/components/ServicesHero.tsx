@@ -1,12 +1,14 @@
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import ServicesVisual from './ServicesVisual';
 import type { ServicesPageTranslations } from '../content/servicesTranslations';
+import type { Lang } from '../content/translations';
 
 interface ServicesHeroProps {
   t: ServicesPageTranslations['hero'];
+  lang: Lang;
 }
 
-export default function ServicesHero({ t }: ServicesHeroProps) {
+export default function ServicesHero({ t, lang }: ServicesHeroProps) {
   const ref = useScrollReveal<HTMLDivElement>();
 
   return (
@@ -64,7 +66,7 @@ export default function ServicesHero({ t }: ServicesHeroProps) {
 
           {/* ── Right: animated visual ── */}
           <div className="hidden lg:flex justify-center items-center">
-            <ServicesVisual />
+            <ServicesVisual lang={lang} />
           </div>
 
         </div>

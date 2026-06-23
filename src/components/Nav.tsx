@@ -5,18 +5,19 @@ import GixLogo from './GixLogo';
 
 interface NavProps {
   lang: Lang;
-  setLang: (l: Lang) => void;
   t: Translations['nav'];
   theme: 'dark' | 'light';
   toggleTheme: () => void;
+  alternateHref: string;
 }
 
-export default function Nav({ lang, setLang, t, theme, toggleTheme }: NavProps) {
+export default function Nav({ lang, t, theme, toggleTheme, alternateHref }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const closeTimer  = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const isLight = theme === 'light';
 
@@ -56,8 +57,7 @@ export default function Nav({ lang, setLang, t, theme, toggleTheme }: NavProps) 
     : 'bg-transparent';
 
   const textMuted = isLight ? 'text-zinc-500 hover:text-zinc-900' : 'text-zinc-400 hover:text-white';
-  const logoText = isLight ? 'text-zinc-900' : 'text-white';
-  const dropdownBg = isLight ? 'bg-white border-zinc-200 shadow-zinc-200/60' : 'bg-[#161616] border-white/8 shadow-black/60';
+const dropdownBg = isLight ? 'bg-white border-zinc-200 shadow-zinc-200/60' : 'bg-[#161616] border-white/8 shadow-black/60';
   const dropdownItem = isLight ? 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50' : 'text-zinc-400 hover:text-white hover:bg-white/5';
   const mobileBg = isLight ? 'bg-white border-black/8' : 'bg-[#0f0f0f] border-white/5';
   const mobileText = isLight ? 'text-zinc-600 hover:text-zinc-900' : 'text-zinc-300 hover:text-white';
@@ -70,8 +70,11 @@ export default function Nav({ lang, setLang, t, theme, toggleTheme }: NavProps) 
         <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
-          <a href="/" className={`flex items-center flex-shrink-0 ${logoText}`}>
-            <GixLogo className="h-7 w-auto" />
+          <a href="/" className="flex items-center flex-shrink-0">
+            {isLight
+              ? <img src="/logo-gix-black.svg" alt="GixLabs" className="h-7 w-auto" />
+              : <GixLogo className="h-7 w-auto" />
+            }
           </a>
 
           {/* Desktop nav links */}
@@ -79,8 +82,8 @@ export default function Nav({ lang, setLang, t, theme, toggleTheme }: NavProps) 
             <div
               ref={dropdownRef}
               className="relative"
-              onMouseEnter={() => setDropdownOpen(true)}
-              onMouseLeave={() => setDropdownOpen(false)}
+              onMouseEnter={() => { clearTimeout(closeTimer.current); setDropdownOpen(true); }}
+              onMouseLeave={() => { closeTimer.current = setTimeout(() => setDropdownOpen(false), 150); }}
             >
               <a
                 href={t.servicesHref}
@@ -94,7 +97,7 @@ export default function Nav({ lang, setLang, t, theme, toggleTheme }: NavProps) 
               </a>
 
               <div
-                className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-52 border rounded-xl shadow-2xl overflow-hidden transition-all duration-200 origin-top ${dropdownBg} ${
+                className={`absolute top-full left-0 mt-2 w-52 border rounded-xl shadow-2xl overflow-hidden transition-all duration-200 origin-top-left ${dropdownBg} ${
                   dropdownOpen ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
                 }`}
               >
@@ -130,7 +133,7 @@ export default function Nav({ lang, setLang, t, theme, toggleTheme }: NavProps) 
 
             {/* Language toggle */}
             <button
-              onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+              onClick={() => { window.location.href = alternateHref; }}
               className={`flex items-center gap-1.5 text-xs font-medium border rounded-full px-3 py-1.5 transition-all duration-200 ${toggleBorder}`}
             >
               <Globe size={12} />

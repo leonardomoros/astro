@@ -20,6 +20,7 @@ export default function HomePage({ initialLang = 'es' }: HomePageProps) {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
   const t = translations[lang];
+  const alternateHref = lang === 'es' ? '/en/' : '/';
 
   useEffect(() => {
     const root = document.documentElement;
@@ -36,7 +37,7 @@ export default function HomePage({ initialLang = 'es' }: HomePageProps) {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
-      <Nav lang={lang} setLang={setLang} t={t.nav} theme={theme} toggleTheme={toggleTheme} />
+      <Nav lang={lang} setLang={setLang} t={t.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
       <Hero t={t.hero} lang={lang} />
       <StatsSection t={t.statsSection} />
       <ServicesSection t={t.servicesSection} />
