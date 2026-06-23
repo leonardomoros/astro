@@ -4,6 +4,7 @@ import LandingPage from '../../../components/LandingPage';
 import SEO from '../../../components/SEO.astro';
 import JsonLd from '../../../components/JsonLd.astro';
 import seoData from '../../../data/seo.json';
+import { landingPageTranslations } from '../../../content/landingPageTranslations';
 
 const meta = seoData.landingPages.en;
 const BASE = 'https://gixlabs.com';
@@ -27,6 +28,16 @@ const serviceSchema = {
   url: `${BASE}${meta.slug}`,
   areaServed: ['Venezuela', 'United States', 'Spain'],
 };
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: landingPageTranslations.en.faq.items.map(item => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
 ---
 
 <!doctype html>
@@ -46,6 +57,7 @@ const serviceSchema = {
     />
     <JsonLd schema={breadcrumb} />
     <JsonLd schema={serviceSchema} />
+    <JsonLd schema={faqSchema} />
   </head>
   <body>
     <LandingPage client:load initialLang="en" />

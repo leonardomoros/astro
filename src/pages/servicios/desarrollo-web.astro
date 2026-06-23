@@ -4,8 +4,19 @@ import WebDevPage from '../../components/WebDevPage';
 import SEO from '../../components/SEO.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import seoData from '../../data/seo.json';
+import { webDevTranslations } from '../../content/webDevTranslations';
 
 const meta = seoData.webDev.es;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: webDevTranslations.es.faq.items.map(item => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
 const BASE = 'https://gixlabs.com';
 
 const breadcrumb = {
@@ -46,6 +57,7 @@ const serviceSchema = {
     />
     <JsonLd schema={breadcrumb} />
     <JsonLd schema={serviceSchema} />
+    <JsonLd schema={faqSchema} />
   </head>
   <body>
     <WebDevPage client:load />

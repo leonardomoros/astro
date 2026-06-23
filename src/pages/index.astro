@@ -2,9 +2,20 @@
 import '../styles/global.css';
 import HomePage from '../components/HomePage';
 import SEO from '../components/SEO.astro';
+import JsonLd from '../components/JsonLd.astro';
 import seoData from '../data/seo.json';
 
 const meta = seoData.home.es;
+const BASE = 'https://gixlabs.com';
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Gixlabs',
+  url: BASE,
+  inLanguage: ['es', 'en'],
+  description: meta.description,
+};
 ---
 
 <!doctype html>
@@ -22,6 +33,7 @@ const meta = seoData.home.es;
       alternateSlug={meta.alternateSlug}
       lang="es"
     />
+    <JsonLd schema={websiteSchema} />
   </head>
   <body>
     <HomePage client:load />
