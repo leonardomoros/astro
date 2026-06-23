@@ -55,6 +55,20 @@
       "alternateSlug": "/servicios/estrategia-seo/"
     }
   },
+  "emailMarketing": {
+    "es": {
+      "title": "Email Marketing y Automatizaciones | Campañas que Convierten | Gixlabs",
+      "description": "Diseñamos secuencias automatizadas, newsletters y campañas segmentadas que convierten suscriptores en clientes. +45% apertura, 3× ROI, primer flujo en 48h.",
+      "slug": "/servicios/email-marketing/",
+      "alternateSlug": "/en/services/email-marketing/"
+    },
+    "en": {
+      "title": "Email Marketing & Automation | Campaigns That Convert | Gixlabs",
+      "description": "We design automated sequences, newsletters, and segmented campaigns that turn subscribers into customers. +45% open rate, 3× ROI, first flow live in 48h.",
+      "slug": "/en/services/email-marketing/",
+      "alternateSlug": "/servicios/email-marketing/"
+    }
+  },
   "webDev": {
     "es": {
       "title": "Desarrollo Web a Medida | Astro, React, Next.js | Gixlabs",
