@@ -71,7 +71,7 @@ export default function LandingProcess({ t }: Props) {
                   <div
                     className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center border-2 relative z-10 transition-all duration-300"
                     style={{
-                      background:  isActive ? `${COLOR_FROM}33` : `${COLOR_FROM}18`,
+                      background:  'var(--bg)',
                       borderColor: isActive ? COLOR_FROM : `${COLOR_FROM}55`,
                       color: COLOR_FROM,
                       boxShadow: isActive ? `0 0 16px ${COLOR_FROM}44` : 'none',
