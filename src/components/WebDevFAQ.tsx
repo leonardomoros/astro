@@ -20,7 +20,7 @@ export default function WebDevFAQ({ t }: Props) {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2.5 mb-6">
             <div className="h-px w-5 bg-gradient-to-r from-[#a855f7] to-[#ec4899]" />
-            <span className="eyebrow">{t.eyebrow}</span>
+            <span className="eyebrow" style={{ color: '#a855f7' }}>{t.eyebrow}</span>
             <div className="h-px w-5 bg-gradient-to-r from-[#ec4899] to-[#a855f7]" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)] leading-[1.1] mb-5">

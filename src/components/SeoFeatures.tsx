@@ -22,7 +22,7 @@ export default function SeoFeatures({ t }: Props) {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2.5 mb-4">
             <div className="h-px w-5 bg-gradient-to-r from-[#10b981] to-[#3b82f6]" />
-            <span className="eyebrow">{t.eyebrow}</span>
+            <span className="eyebrow" style={{ color: '#10b981' }}>{t.eyebrow}</span>
             <div className="h-px w-5 bg-gradient-to-r from-[#3b82f6] to-[#10b981]" />
           </div>
 

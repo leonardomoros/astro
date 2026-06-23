@@ -127,7 +127,7 @@ export default function WebDevHero({ t }: Props) {
           <div>
             <div className="flex items-center gap-2.5 mb-6">
               <div className="h-px w-5 bg-gradient-to-r from-[#a855f7] to-[#ec4899]" />
-              <span className="eyebrow">{t.eyebrow}</span>
+              <span className="eyebrow" style={{ color: '#a855f7' }}>{t.eyebrow}</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-[var(--text)] leading-[1.05] mb-6">

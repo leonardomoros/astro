@@ -1,35 +1,43 @@
+import React, { useState } from 'react';
 import { Search, PenTool, Code2, Rocket } from 'lucide-react';
 import type { LandingPageTranslations } from '../content/landingPageTranslations';
 
-const ICONS: Record<string, React.ComponentType<{ size?: number; strokeWidth?: number; style?: React.CSSProperties }>> = {
-  Search, PenTool, Code2, Rocket,
-};
+const COLOR_FROM = '#3b82f6';
+const COLOR_TO   = '#06b6d4';
 
-const COLORS = ['#3b82f6', '#06b6d4', '#a855f7', '#10b981'];
+const ICONS: Record<string, React.ElementType> = { Search, PenTool, Code2, Rocket };
 
 interface Props { t: LandingPageTranslations['process'] }
 
 export default function LandingProcess({ t }: Props) {
+  const [active, setActive] = useState<number | null>(null);
+
   return (
     <section className="relative py-24 border-t border-[var(--border)] overflow-hidden">
-
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 -left-40 w-[400px] h-[400px] bg-[#06b6d4]/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2.5 mb-4">
             <div className="h-px w-5 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4]" />
-            <span className="eyebrow" style={{ color: '#3b82f6' }}>{t.eyebrow}</span>
+            <span className="eyebrow" style={{ color: COLOR_FROM }}>{t.eyebrow}</span>
             <div className="h-px w-5 bg-gradient-to-r from-[#06b6d4] to-[#3b82f6]" />
           </div>
-
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)] leading-tight mb-5">
             {t.h2.map((part, i) =>
               part.gradient ? (
-                <span key={i} className="bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] bg-clip-text text-transparent">
+                <span
+                  key={i}
+                  style={{
+                    background:           `linear-gradient(to right, ${COLOR_FROM}, ${COLOR_TO})`,
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip:       'text',
+                    WebkitTextFillColor:  'transparent',
+                    color:                'transparent',
+                  }}
+                >
                   {part.text}
                 </span>
               ) : (
@@ -37,38 +45,69 @@ export default function LandingProcess({ t }: Props) {
               )
             )}
           </h2>
-
           <p className="text-[var(--text-muted)] text-[15px] max-w-2xl mx-auto leading-relaxed">{t.subtitle}</p>
         </div>
 
-        <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Vertical timeline */}
+        <div className="relative max-w-3xl mx-auto">
+          <div
+            className="absolute w-px"
+            style={{
+              left: '23px',
+              top: '24px',
+              bottom: '24px',
+              background: `linear-gradient(to bottom, ${COLOR_FROM}, ${COLOR_TO})`,
+              opacity: 0.35,
+            }}
+          />
 
-          <div className="hidden lg:block absolute top-[52px] left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-[var(--border)] to-transparent" />
-
-          {t.steps.map((step, i) => {
-            const Icon = ICONS[step.icon];
-            const color = COLORS[i % COLORS.length];
-            return (
-              <div key={i} className="relative flex flex-col items-center text-center">
-                <div
-                  className="relative z-10 w-[52px] h-[52px] rounded-full flex items-center justify-center mb-5 border"
-                  style={{ background: `${color}15`, borderColor: `${color}40` }}
-                >
-                  {Icon && <Icon size={22} style={{ color }} strokeWidth={1.5} />}
+          <div className="space-y-6">
+            {t.steps.map((step, i) => {
+              const Icon = ICONS[step.icon] ?? Search;
+              const isActive = active === i;
+              return (
+                <div key={i} className="flex gap-5 items-start">
+                  {/* Circle marker */}
                   <div
-                    className="absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold font-jetbrains"
-                    style={{ background: color, color: '#fff' }}
+                    className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center border-2 relative z-10 transition-all duration-300"
+                    style={{
+                      background:  isActive ? `${COLOR_FROM}33` : `${COLOR_FROM}18`,
+                      borderColor: isActive ? COLOR_FROM : `${COLOR_FROM}55`,
+                      color: COLOR_FROM,
+                      boxShadow: isActive ? `0 0 16px ${COLOR_FROM}44` : 'none',
+                    }}
                   >
-                    {i + 1}
+                    <Icon size={18} />
+                    <span
+                      className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold"
+                      style={{ background: COLOR_FROM, color: '#fff' }}
+                    >
+                      {i + 1}
+                    </span>
+                  </div>
+
+                  {/* Card */}
+                  <div
+                    className="flex-1 p-5 rounded-2xl border transition-all duration-300 cursor-default"
+                    style={{
+                      background:  isActive ? `${COLOR_FROM}10` : 'var(--bg-card)',
+                      borderColor: isActive ? `${COLOR_FROM}55` : 'var(--border)',
+                      transform:   isActive ? 'translateY(-2px)' : 'none',
+                      boxShadow:   isActive ? `0 8px 24px ${COLOR_FROM}18` : 'none',
+                    }}
+                    onMouseEnter={() => setActive(i)}
+                    onMouseLeave={() => setActive(null)}
+                  >
+                    <h3 className="font-semibold mb-2" style={{ color: 'var(--text)' }}>{step.title}</h3>
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                      {step.description}
+                    </p>
                   </div>
                 </div>
-                <h3 className="text-base font-semibold text-[var(--text)] mb-2">{step.title}</h3>
-                <p className="text-[13px] text-[var(--text-muted)] leading-relaxed">{step.description}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-
       </div>
     </section>
   );

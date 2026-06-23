@@ -153,7 +153,7 @@ export default function SeoHero({ t }: Props) {
           <div>
             <div className="flex items-center gap-2.5 mb-6">
               <div className="h-px w-5 bg-gradient-to-r from-[#10b981] to-[#3b82f6]" />
-              <span className="eyebrow">{t.eyebrow}</span>
+              <span className="eyebrow" style={{ color: '#10b981' }}>{t.eyebrow}</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-[var(--text)] leading-[1.05] mb-6">
