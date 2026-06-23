@@ -1,0 +1,53 @@
+---
+import '../../styles/global.css';
+import WebDevPage from '../../components/WebDevPage';
+import SEO from '../../components/SEO.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import seoData from '../../data/seo.json';
+
+const meta = seoData.webDev.es;
+const BASE = 'https://gixlabs.com';
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio',       item: `${BASE}/` },
+    { '@type': 'ListItem', position: 2, name: 'Servicios',    item: `${BASE}/servicios/` },
+    { '@type': 'ListItem', position: 3, name: 'Desarrollo Web', item: `${BASE}/servicios/desarrollo-web/` },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Desarrollo Web',
+  description: meta.description,
+  provider: { '@type': 'Organization', name: 'Gixlabs', url: BASE },
+  url: `${BASE}${meta.slug}`,
+  areaServed: ['Venezuela', 'Estados Unidos', 'España'],
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO
+      title={meta.title}
+      description={meta.description}
+      slug={meta.slug}
+      alternateSlug={meta.alternateSlug}
+      lang="es"
+    />
+    <JsonLd schema={breadcrumb} />
+    <JsonLd schema={serviceSchema} />
+  </head>
+  <body>
+    <WebDevPage client:load />
+  </body>
+</html>
