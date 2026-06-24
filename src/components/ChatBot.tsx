@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { X, Send, Loader2 } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2 } from 'lucide-react';
 
 /* ── Gixy icon — replicates the 3 favicon shapes ───────────────── */
 function GixyIcon({ size = 36 }: { size?: number }) {
@@ -251,18 +251,18 @@ export default function ChatBot() {
         onClick={() => setIsOpen(prev => !prev)}
         className="
           fixed bottom-5 right-4 sm:right-6 z-50
-          w-14 h-14 rounded-2xl
+          w-14 h-14 rounded-full
           flex items-center justify-center
-          shadow-xl shadow-black/40
+          shadow-xl shadow-purple-500/30
           transition-all duration-200
-          hover:scale-105 active:scale-95
+          hover:scale-110 active:scale-95
         "
-        style={{ background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.08)' }}
+        style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}
         aria-label={isOpen ? 'Cerrar chat' : 'Abrir chat'}
       >
         {isOpen
-          ? <X size={20} className="text-white" />
-          : <GixyIcon size={36} />
+          ? <X size={22} className="text-white" />
+          : <MessageCircle size={24} className="text-white" />
         }
         {hasUnread && !isOpen && (
           <span className="absolute top-0 right-0 w-3 h-3 rounded-full bg-red-500 border-2 border-[#111117]" />
