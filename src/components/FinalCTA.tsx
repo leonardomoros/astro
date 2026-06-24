@@ -12,7 +12,6 @@ interface FinalCTAProps {
 export default function FinalCTA({ t, colorFrom = '#a855f7', colorTo = '#ec4899' }: FinalCTAProps) {
   const ref = useScrollReveal<HTMLDivElement>();
   const [btnHover, setBtnHover] = useState(false);
-  const [secHover, setSecHover] = useState(false);
 
   return (
     <section className="relative py-32 border-t border-[var(--border)] overflow-hidden">
@@ -75,15 +74,6 @@ export default function FinalCTA({ t, colorFrom = '#a855f7', colorTo = '#ec4899'
             >
               {t.primaryCTA}
               <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-            </a>
-            <a
-              href={t.secondaryCTAHref}
-              onMouseEnter={() => setSecHover(true)}
-              onMouseLeave={() => setSecHover(false)}
-              className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text)] px-7 py-3.5 rounded-full transition-all duration-200 border border-[var(--border)]"
-              style={{ borderColor: secHover ? `${colorFrom}66` : undefined }}
-            >
-              {t.secondaryCTA}
             </a>
           </div>
 
