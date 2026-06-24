@@ -55,6 +55,20 @@
       "alternateSlug": "/servicios/estrategia-seo/"
     }
   },
+  "webOptimization": {
+    "es": {
+      "title": "Optimización Web | Core Web Vitals y Lighthouse 90+ | Gixlabs",
+      "description": "Auditamos y optimizamos tu sitio para cargar en menos de 2s, pasar Core Web Vitals y mejorar tus conversiones en +25%. Lighthouse promedio 96/100.",
+      "slug": "/servicios/optimizacion-web/",
+      "alternateSlug": "/en/services/website-optimization/"
+    },
+    "en": {
+      "title": "Web Optimization | Core Web Vitals & Lighthouse 90+ | Gixlabs",
+      "description": "We audit and optimize your site to load in under 2s, pass Core Web Vitals, and improve conversions by +25%. Average Lighthouse score 96/100.",
+      "slug": "/en/services/website-optimization/",
+      "alternateSlug": "/servicios/optimizacion-web/"
+    }
+  },
   "paidAds": {
     "es": {
       "title": "Publicidad Pagada | Google Ads y Meta Ads | Gixlabs",

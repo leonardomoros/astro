@@ -1,0 +1,65 @@
+---
+import '../../../styles/global.css';
+import WebOptPage from '../../../components/WebOptPage';
+import SEO from '../../../components/SEO.astro';
+import JsonLd from '../../../components/JsonLd.astro';
+import seoData from '../../../data/seo.json';
+import { webOptimizationTranslations } from '../../../content/webOptimizationTranslations';
+
+const meta = seoData.webOptimization.en;
+const BASE = 'https://gixlabs.com';
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home',                  item: `${BASE}/en/` },
+    { '@type': 'ListItem', position: 2, name: 'Services',              item: `${BASE}/en/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Website Optimization',  item: `${BASE}/en/services/website-optimization/` },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Website Optimization',
+  description: meta.description,
+  provider: { '@type': 'Organization', name: 'Gixlabs', url: BASE },
+  url: `${BASE}${meta.slug}`,
+  areaServed: ['Venezuela', 'United States', 'Spain'],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: webOptimizationTranslations.en.faq.items.map(item => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO
+      title={meta.title}
+      description={meta.description}
+      slug={meta.slug}
+      alternateSlug={meta.alternateSlug}
+      lang="en"
+    />
+    <JsonLd schema={breadcrumb} />
+    <JsonLd schema={serviceSchema} />
+    <JsonLd schema={faqSchema} />
+  </head>
+  <body>
+    <WebOptPage client:load initialLang="en" />
+  </body>
+</html>
