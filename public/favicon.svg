@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
   <circle cx="120" cy="120" r="120" fill="#0a0a0a"/>
-  <g transform="translate(-64.9 30.74) scale(0.738)">
-    <path fill="#d62b84" d="M240.19,20.39l46.2,43.76V176l-46.2,46.19S239.38,20.39,240.19,20.39Z"/>
-    <path fill="#7c5aa2" d="M220.86,146V99.53H115.71V146Z"/>
-    <polyline fill="#689cd3" points="386.65 155.24 324.48 219.36 272.21 219.36 360.71 127.28"/>
+  <g transform="translate(-64.87 30.74) scale(0.738)">
+    <polygon fill="#d62b84" points="240,20 286,64 286,176 240,222"/>
+    <rect fill="#7c5aa2" x="115" y="99" width="106" height="47"/>
+    <polygon fill="#689cd3" points="386,155 324,219 272,219 361,127"/>
   </g>
 </svg>
