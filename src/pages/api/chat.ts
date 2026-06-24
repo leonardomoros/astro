@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import Anthropic from '@anthropic-ai/sdk';
+import { createLeadInNotion } from '../../lib/notion';
 
 export const prerender = false;
 
@@ -83,10 +84,14 @@ export const POST: APIRoute = async ({ request }) => {
       messageText = messageText.replace('[FORM]', '').trim();
     }
 
-    // Extract [LEAD:{...}] tag
+    // Extract [LEAD:{...}] tag and push to Notion
     const leadMatch = messageText.match(/\[LEAD:(\{.*?\})\]/s);
     if (leadMatch) {
-      try { lead = JSON.parse(leadMatch[1]); } catch { /* ignore */ }
+      try {
+        lead = JSON.parse(leadMatch[1]);
+        // Fire-and-forget: don't block the response
+        createLeadInNotion(lead).catch(e => console.error('[chat] Notion push failed:', e));
+      } catch { /* ignore malformed JSON */ }
       messageText = messageText.replace(/\s*\[LEAD:\{.*?\}\]/s, '').trim();
     }
 
