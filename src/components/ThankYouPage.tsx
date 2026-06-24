@@ -7,7 +7,7 @@ import type { Lang } from '../content/translations';
 
 const COLOR_FROM = '#a855f7';
 const COLOR_TO   = '#7c3aed';
-const CALENDLY_URL = 'https://calendly.com/gixlabs/sesion-estrategica';
+const CALENDLY_URL = 'https://calendly.com/gixlabprojects/30min?embed_domain=gixlabs.com&embed_type=Inline&background_color=1e293b&text_color=ffffff&primary_color=b587fb';
 
 const copy = {
   es: {
