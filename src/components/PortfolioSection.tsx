@@ -137,8 +137,9 @@ export default function PortfolioSection({ t }: PortfolioSectionProps) {
                         px-3.5 py-1.5 rounded-full
                         bg-gradient-to-r from-[#a855f7] to-[#ec4899]
                         text-white shadow-md shadow-purple-500/30
-                        opacity-0 translate-y-1
-                        group-hover:opacity-100 group-hover:translate-y-0
+                        opacity-100 translate-y-0
+                        lg:opacity-0 lg:translate-y-1
+                        lg:group-hover:opacity-100 lg:group-hover:translate-y-0
                         transition-all duration-250 ease-out
                       "
                     >
