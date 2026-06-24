@@ -8,6 +8,8 @@ export interface HeroPart {
 export interface ServiceItem {
   label: string;
   href: string;
+  icon: string;
+  description: string;
 }
 
 export interface StatMetric {
@@ -118,13 +120,13 @@ export const translations: Record<Lang, Translations> = {
       services: 'Servicios',
       servicesHref: '/servicios/',
       servicesItems: [
-        { label: 'Desarrollo Web',    href: '/servicios/desarrollo-web/' },
-        { label: 'Estrategia SEO',    href: '/servicios/estrategia-seo/' },
-        { label: 'Landing Pages',     href: '/servicios/landing-pages/' },
-        { label: 'Email Marketing',   href: '/servicios/email-marketing/' },
-        { label: 'Publicidad Pagada', href: '/servicios/publicidad-pagada/' },
-        { label: 'Optimización Web',  href: '/servicios/optimizacion-web/' },
-        { label: 'Diseño UX/UI',      href: '/servicios/diseno-ux-ui/' },
+        { label: 'Desarrollo Web',    href: '/servicios/desarrollo-web/',    icon: 'Monitor',        description: 'Sitios modernos, rápidos y escalables.' },
+        { label: 'Estrategia SEO',    href: '/servicios/estrategia-seo/',    icon: 'TrendingUp',     description: 'Posicionamiento orgánico que atrae clientes.' },
+        { label: 'Landing Pages',     href: '/servicios/landing-pages/',     icon: 'LayoutTemplate', description: 'Páginas de alta conversión para tus campañas.' },
+        { label: 'Email Marketing',   href: '/servicios/email-marketing/',   icon: 'Mail',           description: 'Secuencias automatizadas que nutren y convierten.' },
+        { label: 'Publicidad Pagada', href: '/servicios/publicidad-pagada/', icon: 'Target',         description: 'Google y Meta Ads con ROI medible.' },
+        { label: 'Optimización Web',  href: '/servicios/optimizacion-web/',  icon: 'Zap',            description: 'Velocidad y rendimiento al máximo nivel.' },
+        { label: 'Diseño UX/UI',      href: '/servicios/diseno-ux-ui/',      icon: 'Palette',        description: 'Interfaces intuitivas centradas en el usuario.' },
       ],
       contact: 'Contacto',
       contactHref: '/contacto/',
@@ -457,13 +459,13 @@ export const translations: Record<Lang, Translations> = {
       services: 'Services',
       servicesHref: '/en/services/',
       servicesItems: [
-        { label: 'Web Development',      href: '/en/services/web-development/' },
-        { label: 'SEO Strategy',         href: '/en/services/seo-strategy/' },
-        { label: 'Landing Pages',        href: '/en/services/landing-pages/' },
-        { label: 'Email Marketing',      href: '/en/services/email-marketing/' },
-        { label: 'Paid Advertising',     href: '/en/services/paid-advertising/' },
-        { label: 'Website Optimization', href: '/en/services/website-optimization/' },
-        { label: 'UX/UI Design',         href: '/en/services/ux-ui-design/' },
+        { label: 'Web Development',      href: '/en/services/web-development/',    icon: 'Monitor',        description: 'Modern, fast, and scalable websites.' },
+        { label: 'SEO Strategy',         href: '/en/services/seo-strategy/',       icon: 'TrendingUp',     description: 'Organic search growth that brings real clients.' },
+        { label: 'Landing Pages',        href: '/en/services/landing-pages/',      icon: 'LayoutTemplate', description: 'High-converting pages built for your campaigns.' },
+        { label: 'Email Marketing',      href: '/en/services/email-marketing/',    icon: 'Mail',           description: 'Automated sequences that nurture and convert.' },
+        { label: 'Paid Advertising',     href: '/en/services/paid-advertising/',   icon: 'Target',         description: 'Google & Meta Ads with measurable ROI.' },
+        { label: 'Website Optimization', href: '/en/services/website-optimization/', icon: 'Zap',          description: 'Speed and performance at their peak.' },
+        { label: 'UX/UI Design',         href: '/en/services/ux-ui-design/',       icon: 'Palette',        description: 'User-centered interfaces that delight and convert.' },
       ],
       contact: 'Contact',
       contactHref: '/en/contact/',
