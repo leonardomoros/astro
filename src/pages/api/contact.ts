@@ -58,7 +58,7 @@ export const POST: APIRoute = async ({ request }) => {
           <h2 style="color:#a855f7">¡Hola, ${nombre}!</h2>
           <p>Recibimos tu mensaje y te responderemos en menos de 24 horas con los próximos pasos.</p>
           <p>Mientras tanto, puedes agendar tu sesión estratégica gratuita aquí:</p>
-          <a href="https://cal.com/gixlabs" style="display:inline-block;margin:8px 0;padding:12px 24px;background:linear-gradient(to right,#a855f7,#7c3aed);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">
+          <a href="https://calendly.com/gixlabprojects/30min" style="display:inline-block;margin:8px 0;padding:12px 24px;background:linear-gradient(to right,#a855f7,#7c3aed);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">
             Agendar llamada →
           </a>
           <p style="color:#6b7280;font-size:14px">El equipo de Gixlabs</p>
@@ -68,7 +68,7 @@ export const POST: APIRoute = async ({ request }) => {
           <h2 style="color:#a855f7">Hello, ${nombre}!</h2>
           <p>We received your message and will get back to you within 24 hours with next steps.</p>
           <p>In the meantime, you can book your free strategy session here:</p>
-          <a href="https://cal.com/gixlabs" style="display:inline-block;margin:8px 0;padding:12px 24px;background:linear-gradient(to right,#a855f7,#7c3aed);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">
+          <a href="https://calendly.com/gixlabprojects/30min" style="display:inline-block;margin:8px 0;padding:12px 24px;background:linear-gradient(to right,#a855f7,#7c3aed);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">
             Book a call →
           </a>
           <p style="color:#6b7280;font-size:14px">The Gixlabs team</p>
