@@ -470,7 +470,7 @@ export const translations: Record<Lang, Translations> = {
       contact: 'Contact',
       contactHref: '/en/contact/',
       faqs: 'FAQs',
-      faqsHref: '/en/faqs/',
+      faqsHref: '/en/faq/',
       cta: 'Start a Project',
       ctaHref: '/en/contact/',
     },
@@ -773,7 +773,7 @@ export const translations: Record<Lang, Translations> = {
           links: [
             { label: 'Portfolio',      href: '/en/#portafolio' },
             { label: 'Our Services',   href: '/en/services/' },
-            { label: 'FAQs',           href: '/en/faqs/' },
+            { label: 'FAQs',           href: '/en/faq/' },
             { label: 'Contact',        href: '/en/contact/' },
           ],
         },
