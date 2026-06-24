@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import type { Translations } from '../content/translations';
 import GixLogo from './GixLogo';
 
@@ -120,5 +121,6 @@ export default function Footer({ t }: FooterProps) {
 
       </div>
     </footer>
+    <SpeedInsights />
   );
 }
