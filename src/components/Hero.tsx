@@ -105,13 +105,13 @@ export default function Hero({ t, lang }: HeroProps) {
             </div>
 
             {/* Stats row */}
-            <div className="flex items-stretch divide-x divide-[var(--border)] border-t border-[var(--border)] pt-8">
+            <div className="grid grid-cols-2 sm:flex sm:items-stretch sm:divide-x sm:divide-[var(--border)] border-t border-[var(--border)] pt-8 gap-y-6 sm:gap-y-0">
               {t.stats.map((stat) => (
-                <div key={stat.label} className="px-6 first:pl-0 last:pr-0 text-left">
+                <div key={stat.label} className="sm:px-6 sm:first:pl-0 sm:last:pr-0 text-left">
                   <div className="text-2xl font-bold text-[var(--text)] leading-none mb-1.5">
                     {stat.value}
                   </div>
-                  <div className="text-[11px] text-[var(--text-muted)] leading-tight whitespace-nowrap">
+                  <div className="text-[11px] text-[var(--text-muted)] leading-tight">
                     {stat.label}
                   </div>
                 </div>
