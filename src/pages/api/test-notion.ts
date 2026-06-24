@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { Client } from '@notionhq/client';
 import { createLeadInNotion } from '../../lib/notion';
 
 export const prerender = false;
@@ -10,12 +11,27 @@ export const GET: APIRoute = async () => {
   if (!apiKey || !dbId) {
     return new Response(JSON.stringify({
       ok: false,
-      error: 'Missing env vars',
       NOTION_API_KEY: apiKey ? 'SET' : 'MISSING',
       NOTION_DATABASE_ID: dbId ? 'SET' : 'MISSING',
     }), { status: 200, headers: { 'Content-Type': 'application/json' } });
   }
 
+  const notion = new Client({ auth: apiKey });
+
+  // First, fetch the actual properties from the database
+  let dbProps: string[] = [];
+  try {
+    const db = await notion.databases.retrieve({ database_id: dbId });
+    dbProps = Object.keys(db.properties);
+  } catch (err) {
+    return new Response(JSON.stringify({
+      ok: false,
+      error: `Cannot retrieve DB: ${err instanceof Error ? err.message : String(err)}`,
+      NOTION_DATABASE_ID: dbId,
+    }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  }
+
+  // Now try to insert a test lead
   try {
     const pageId = await createLeadInNotion({
       name: 'Test Lead',
@@ -25,15 +41,17 @@ export const GET: APIRoute = async () => {
     });
 
     return new Response(JSON.stringify({
-      ok: !!pageId,
+      ok: true,
       pageId,
-      NOTION_API_KEY: 'SET',
+      db_properties: dbProps,
       NOTION_DATABASE_ID: dbId,
     }), { status: 200, headers: { 'Content-Type': 'application/json' } });
   } catch (err) {
     return new Response(JSON.stringify({
       ok: false,
       error: err instanceof Error ? err.message : String(err),
+      db_properties: dbProps,
+      NOTION_DATABASE_ID: dbId,
     }), { status: 200, headers: { 'Content-Type': 'application/json' } });
   }
 };
