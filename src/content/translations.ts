@@ -418,12 +418,13 @@ export const translations: Record<Lang, Translations> = {
         {
           title: 'Servicios',
           links: [
-            { label: 'Desarrollo Web', href: '/servicios/desarrollo-web/' },
-            { label: 'Estrategia Digital', href: '/servicios/estrategia-digital/' },
-            { label: 'Estrategia SEO', href: '/servicios/seo/' },
-            { label: 'Email Marketing', href: '/servicios/email-marketing/' },
+            { label: 'Desarrollo Web',    href: '/servicios/desarrollo-web/' },
+            { label: 'Estrategia SEO',    href: '/servicios/estrategia-seo/' },
+            { label: 'Landing Pages',     href: '/servicios/landing-pages/' },
+            { label: 'Email Marketing',   href: '/servicios/email-marketing/' },
             { label: 'Publicidad Pagada', href: '/servicios/publicidad-pagada/' },
-            { label: 'Landing Pages', href: '/servicios/landing-pages/' },
+            { label: 'Optimización Web',  href: '/servicios/optimizacion-web/' },
+            { label: 'Diseño UX/UI',      href: '/servicios/diseno-ux-ui/' },
           ],
         },
         {
@@ -756,12 +757,13 @@ export const translations: Record<Lang, Translations> = {
         {
           title: 'Services',
           links: [
-            { label: 'Web Development', href: '/en/services/web-development/' },
-            { label: 'Digital Strategy', href: '/en/services/digital-strategy/' },
-            { label: 'SEO Strategy', href: '/en/services/seo/' },
-            { label: 'Email Marketing', href: '/en/services/email-marketing/' },
-            { label: 'Paid Advertising', href: '/en/services/paid-advertising/' },
-            { label: 'Landing Pages', href: '/en/services/landing-pages/' },
+            { label: 'Web Development',      href: '/en/services/web-development/' },
+            { label: 'SEO Strategy',         href: '/en/services/seo-strategy/' },
+            { label: 'Landing Pages',        href: '/en/services/landing-pages/' },
+            { label: 'Email Marketing',      href: '/en/services/email-marketing/' },
+            { label: 'Paid Advertising',     href: '/en/services/paid-advertising/' },
+            { label: 'Website Optimization', href: '/en/services/website-optimization/' },
+            { label: 'UX/UI Design',         href: '/en/services/ux-ui-design/' },
           ],
         },
         {
