@@ -3,6 +3,7 @@ import '../styles/global.css';
 import SEO from './SEO.astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import Analytics from '@vercel/analytics/astro';
+import ChatBot from './ChatBot';
 
 interface Props {
   title: string;
@@ -31,6 +32,7 @@ const { title, description, slug, alternateSlug, lang, noindex = false } = Astro
   </head>
   <body>
     <slot />
+    <ChatBot client:load />
     <SpeedInsights />
     <Analytics />
   </body>
