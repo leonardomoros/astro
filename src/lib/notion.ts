@@ -56,6 +56,6 @@ export async function createLeadInNotion(lead: LeadData): Promise<string | null>
     return page.id;
   } catch (err) {
     console.error('[notion] Failed to create lead:', err);
-    return null;
+    throw err;
   }
 }
