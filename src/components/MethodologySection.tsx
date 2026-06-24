@@ -347,7 +347,7 @@ export default function MethodologySection({ t }: MethodologySectionProps) {
               </div>
 
               {/* Visual column */}
-              <div className="p-6 flex items-center justify-center bg-[var(--bg)]">
+              <div className="p-6 flex items-center justify-center">
                 <div className="w-full">
                   <Visual />
                 </div>
