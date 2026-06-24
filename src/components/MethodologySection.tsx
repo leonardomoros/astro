@@ -301,13 +301,8 @@ export default function MethodologySection({ t }: MethodologySectionProps) {
                       {/* Text */}
                       <div className="p-8 lg:p-10">
                         <div className="flex items-center gap-4 mb-6">
-                          <span className="text-5xl font-bold gradient-text tabular-nums leading-none">{phase.number}</span>
-                          <div>
-                            <p className="text-[11px] font-semibold tracking-[0.2em] text-[#a855f7] uppercase mb-0.5">
-                              {t.eyebrow.split(' ')[0]}
-                            </p>
-                            <h3 className="text-2xl font-bold text-[var(--text)]">{phase.title}</h3>
-                          </div>
+                          <span className="text-5xl font-bold gradient-text tabular-nums leading-none flex-shrink-0">{phase.number}</span>
+                          <h3 className="text-4xl lg:text-5xl font-bold font-jetbrains leading-none text-white">{phase.title}</h3>
                         </div>
                         <p className="text-base lg:text-lg leading-relaxed mb-8 text-[var(--text-muted)]">
                           {phase.description}
