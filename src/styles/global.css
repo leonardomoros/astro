@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
 
 /* ── Theme variables ─────────────────────────────────────────────────── */
 :root {
@@ -27,7 +29,7 @@
   }
 
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--bg);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
@@ -42,12 +44,12 @@
 
 /* ── JetBrains Mono utility ───────────────────────────────────────────── */
 .font-jetbrains {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
 }
 
 /* Eyebrow label — small purple monospaced text above section headings */
 .eyebrow {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.22em;
