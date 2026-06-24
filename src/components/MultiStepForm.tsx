@@ -1,62 +1,90 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { CheckCircle, ExternalLink, Loader2 } from 'lucide-react';
 import type { ContactTranslations } from '../content/contactTranslations';
 
-const COLOR_FROM = '#a855f7';
-const COLOR_TO   = '#7c3aed';
-const CAL_URL    = 'https://cal.com/gixlabs';
+const COLOR_FROM  = '#a855f7';
+const COLOR_TO    = '#7c3aed';
+const CAL_URL     = 'https://cal.com/gixlabs';
 const TOTAL_STEPS = 3;
 
 interface FormValues {
   firstName:  string;
   lastName:   string;
   email:      string;
-  hasWebsite: 'si' | 'no' | '';
+  hasWebsite: string;
   websiteUrl: string;
   service:    string;
   budget:     string;
   message:    string;
 }
 
+type FormErrors = Partial<Record<keyof FormValues, string>>;
+
 interface Props { t: ContactTranslations['form']; lang: 'es' | 'en' }
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default function MultiStepForm({ t, lang }: Props) {
-  const [step, setStep]           = useState(1);
+  const [step, setStep]               = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess]     = useState(false);
   const [submitError, setSubmitError] = useState('');
 
-  const {
-    register,
-    handleSubmit,
-    trigger,
-    watch,
-    getValues,
-    formState: { errors },
-  } = useForm<FormValues>({
-    defaultValues: {
-      firstName: '', lastName: '', email: '',
-      hasWebsite: '', websiteUrl: '',
-      service: '', budget: '', message: '',
-    },
+  const [values, setValues] = useState<FormValues>({
+    firstName: '', lastName: '', email: '',
+    hasWebsite: '', websiteUrl: '',
+    service: '', budget: '', message: '',
   });
+  const [errors, setErrors] = useState<FormErrors>({});
 
-  const hasWebsite = watch('hasWebsite');
-  const firstName  = watch('firstName');
-
-  const stepFields: Record<number, (keyof FormValues)[]> = {
-    1: ['firstName', 'lastName', 'email'],
-    2: ['service', 'budget'],
-    3: ['message'],
-  };
-
-  async function goNext() {
-    const valid = await trigger(stepFields[step]);
-    if (valid) setStep(s => s + 1);
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) {
+    const { name, value } = e.target;
+    setValues(prev => ({ ...prev, [name]: value }));
+    if (errors[name as keyof FormValues]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
   }
 
-  async function onSubmit(data: FormValues) {
+  function validate1(): FormErrors {
+    const errs: FormErrors = {};
+    if (!values.firstName.trim()) errs.firstName = t.errors.required;
+    if (!values.lastName.trim())  errs.lastName  = t.errors.required;
+    if (!values.email.trim())     errs.email     = t.errors.required;
+    else if (!EMAIL_RE.test(values.email)) errs.email = t.errors.emailInvalid;
+    return errs;
+  }
+
+  function validate2(): FormErrors {
+    const errs: FormErrors = {};
+    if (!values.service) errs.service = t.errors.required;
+    if (!values.budget)  errs.budget  = t.errors.required;
+    return errs;
+  }
+
+  function validate3(): FormErrors {
+    const errs: FormErrors = {};
+    if (!values.message.trim())        errs.message = t.errors.required;
+    else if (values.message.trim().length < 20) errs.message = t.errors.messageTooShort;
+    return errs;
+  }
+
+  function goNext() {
+    const errs = step === 1 ? validate1() : step === 2 ? validate2() : validate3();
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
+    }
+    setErrors({});
+    setStep(s => s + 1);
+  }
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const errs = validate3();
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+
     setIsSubmitting(true);
     setSubmitError('');
     try {
@@ -64,14 +92,14 @@ export default function MultiStepForm({ t, lang }: Props) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          nombre:      data.firstName,
-          apellido:    data.lastName,
-          email:       data.email,
-          tieneWeb:    data.hasWebsite,
-          urlWeb:      data.websiteUrl,
-          servicio:    data.service,
-          presupuesto: data.budget,
-          mensaje:     data.message,
+          nombre:      values.firstName,
+          apellido:    values.lastName,
+          email:       values.email,
+          tieneWeb:    values.hasWebsite,
+          urlWeb:      values.websiteUrl,
+          servicio:    values.service,
+          presupuesto: values.budget,
+          mensaje:     values.message,
           lang,
         }),
       });
@@ -86,41 +114,33 @@ export default function MultiStepForm({ t, lang }: Props) {
 
   const stepLabelText = t.stepLabel
     .replace('{current}', String(step))
-    .replace('{total}', String(TOTAL_STEPS));
+    .replace('{total}',   String(TOTAL_STEPS));
 
-  // ── Success screen ──────────────────────────────────────────────────────────
+  // ── Success ─────────────────────────────────────────────────────────────────
   if (isSuccess) {
     return (
       <div className="text-center py-8 px-6 space-y-6">
-        {/* Animated check */}
         <div
           className="w-20 h-20 rounded-full flex items-center justify-center mx-auto"
-          style={{ background: `linear-gradient(135deg, ${COLOR_FROM}22, ${COLOR_TO}22)`, border: `2px solid ${COLOR_FROM}55` }}
+          style={{ background: `${COLOR_FROM}22`, border: `2px solid ${COLOR_FROM}55` }}
         >
-          <CheckCircle size={40} style={{ color: COLOR_FROM }} className="animate-[check_0.4s_ease-out]" />
+          <CheckCircle size={40} style={{ color: COLOR_FROM }} />
         </div>
         <h3 className="text-2xl font-bold" style={{ color: 'var(--text)' }}>
-          {t.success.title.replace('{name}', firstName)}
+          {t.success.title.replace('{name}', values.firstName)}
         </h3>
         <p className="text-base" style={{ color: 'var(--text-muted)' }}>{t.success.body}</p>
-
-        {/* Separator */}
         <div className="flex items-center gap-3 py-2">
           <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
           <span className="text-sm" style={{ color: 'var(--text-muted)' }}>{t.success.separator}</span>
           <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
         </div>
-
-        {/* Cal.com CTA */}
         <a
           href={CAL_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:-translate-y-0.5"
-          style={{
-            background: `linear-gradient(to right, ${COLOR_FROM}, ${COLOR_TO})`,
-            boxShadow:  `0 8px 25px ${COLOR_FROM}44`,
-          }}
+          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm text-white"
+          style={{ background: `linear-gradient(to right, ${COLOR_FROM}, ${COLOR_TO})` }}
         >
           {t.success.calCta}
           <ExternalLink size={15} />
@@ -131,30 +151,32 @@ export default function MultiStepForm({ t, lang }: Props) {
   }
 
   // ── Form ────────────────────────────────────────────────────────────────────
-  const inputClass = "w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all duration-200";
-  const inputStyle = (hasErr: boolean) => ({
+  const inputBase = "w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all duration-200";
+  const inputSt   = (field: keyof FormValues) => ({
     background:  'var(--bg)',
-    borderColor: hasErr ? '#f43f5e' : 'var(--border)',
+    borderColor: errors[field] ? '#f43f5e' : 'var(--border)',
     color:       'var(--text)',
   });
-  const focusStyle = {
-    '--tw-ring-color': COLOR_FROM,
-  } as React.CSSProperties;
-  const labelClass = "block text-sm font-medium mb-1.5";
-  const errClass   = "mt-1 text-xs text-red-400";
+  const labelCls = "block text-sm font-medium mb-1.5";
+  const errCls   = "mt-1 text-xs text-red-400";
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      {/* Progress bar */}
+    <form onSubmit={onSubmit} noValidate>
+      {/* Progress */}
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2">
           <span className="text-xs font-medium" style={{ color: COLOR_FROM }}>{stepLabelText}</span>
-          <span className="text-xs" style={{ color: 'var(--text-muted)' }}>{Math.round((step / TOTAL_STEPS) * 100)}%</span>
+          <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
+            {Math.round((step / TOTAL_STEPS) * 100)}%
+          </span>
         </div>
         <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--border)' }}>
           <div
             className="h-full rounded-full transition-all duration-500"
-            style={{ width: `${(step / TOTAL_STEPS) * 100}%`, background: `linear-gradient(to right, ${COLOR_FROM}, ${COLOR_TO})` }}
+            style={{
+              width:      `${(step / TOTAL_STEPS) * 100}%`,
+              background: `linear-gradient(to right, ${COLOR_FROM}, ${COLOR_TO})`,
+            }}
           />
         </div>
       </div>
@@ -169,39 +191,32 @@ export default function MultiStepForm({ t, lang }: Props) {
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className={labelClass} style={{ color: 'var(--text)' }}>{t.step1.firstName} *</label>
+              <label className={labelCls} style={{ color: 'var(--text)' }}>{t.step1.firstName} *</label>
               <input
-                {...register('firstName', { required: t.errors.required })}
+                name="firstName" value={values.firstName} onChange={handleChange}
                 placeholder={t.step1.firstNamePh}
-                className={inputClass}
-                style={inputStyle(!!errors.firstName)}
+                className={inputBase} style={inputSt('firstName')}
               />
-              {errors.firstName && <p className={errClass}>{errors.firstName.message}</p>}
+              {errors.firstName && <p className={errCls}>{errors.firstName}</p>}
             </div>
             <div>
-              <label className={labelClass} style={{ color: 'var(--text)' }}>{t.step1.lastName} *</label>
+              <label className={labelCls} style={{ color: 'var(--text)' }}>{t.step1.lastName} *</label>
               <input
-                {...register('lastName', { required: t.errors.required })}
+                name="lastName" value={values.lastName} onChange={handleChange}
                 placeholder={t.step1.lastNamePh}
-                className={inputClass}
-                style={inputStyle(!!errors.lastName)}
+                className={inputBase} style={inputSt('lastName')}
               />
-              {errors.lastName && <p className={errClass}>{errors.lastName.message}</p>}
+              {errors.lastName && <p className={errCls}>{errors.lastName}</p>}
             </div>
           </div>
           <div>
-            <label className={labelClass} style={{ color: 'var(--text)' }}>{t.step1.email} *</label>
+            <label className={labelCls} style={{ color: 'var(--text)' }}>{t.step1.email} *</label>
             <input
-              {...register('email', {
-                required: t.errors.required,
-                pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: t.errors.emailInvalid },
-              })}
-              type="email"
+              name="email" type="email" value={values.email} onChange={handleChange}
               placeholder={t.step1.emailPh}
-              className={inputClass}
-              style={inputStyle(!!errors.email)}
+              className={inputBase} style={inputSt('email')}
             />
-            {errors.email && <p className={errClass}>{errors.email.message}</p>}
+            {errors.email && <p className={errCls}>{errors.email}</p>}
           </div>
         </div>
       )}
@@ -211,22 +226,25 @@ export default function MultiStepForm({ t, lang }: Props) {
         <div className="space-y-5">
           {/* Has website */}
           <div>
-            <label className={labelClass} style={{ color: 'var(--text)' }}>{t.step2.hasWebsite}</label>
+            <label className={labelCls} style={{ color: 'var(--text)' }}>{t.step2.hasWebsite}</label>
             <div className="flex gap-3">
               {(['si', 'no'] as const).map(val => {
-                const label = val === 'si' ? t.step2.yes : t.step2.no;
-                const checked = hasWebsite === val;
+                const isChecked = values.hasWebsite === val;
+                const label     = val === 'si' ? t.step2.yes : t.step2.no;
                 return (
                   <label
                     key={val}
                     className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border cursor-pointer transition-all duration-200"
                     style={{
-                      background:  checked ? `${COLOR_FROM}18` : 'var(--bg)',
-                      borderColor: checked ? COLOR_FROM : 'var(--border)',
-                      color:       checked ? COLOR_FROM : 'var(--text-muted)',
+                      background:  isChecked ? `${COLOR_FROM}18` : 'var(--bg)',
+                      borderColor: isChecked ? COLOR_FROM : 'var(--border)',
+                      color:       isChecked ? COLOR_FROM : 'var(--text-muted)',
                     }}
                   >
-                    <input {...register('hasWebsite')} type="radio" value={val} className="sr-only" />
+                    <input
+                      type="radio" name="hasWebsite" value={val}
+                      checked={isChecked} onChange={handleChange} className="sr-only"
+                    />
                     <span className="text-sm font-medium">{label}</span>
                   </label>
                 );
@@ -234,47 +252,44 @@ export default function MultiStepForm({ t, lang }: Props) {
             </div>
           </div>
 
-          {/* URL (conditional) */}
-          {hasWebsite === 'si' && (
+          {/* URL conditional */}
+          {values.hasWebsite === 'si' && (
             <div>
-              <label className={labelClass} style={{ color: 'var(--text)' }}>{t.step2.websiteUrl}</label>
+              <label className={labelCls} style={{ color: 'var(--text)' }}>{t.step2.websiteUrl}</label>
               <input
-                {...register('websiteUrl')}
+                name="websiteUrl" value={values.websiteUrl} onChange={handleChange}
                 placeholder={t.step2.websiteUrlPh}
-                className={inputClass}
-                style={inputStyle(false)}
+                className={inputBase} style={inputSt('websiteUrl')}
               />
             </div>
           )}
 
           {/* Service */}
           <div>
-            <label className={labelClass} style={{ color: 'var(--text)' }}>{t.step2.service} *</label>
+            <label className={labelCls} style={{ color: 'var(--text)' }}>{t.step2.service} *</label>
             <select
-              {...register('service', { required: t.errors.required, validate: v => v !== t.step2.services[0] || t.errors.required })}
-              className={inputClass}
-              style={{ ...inputStyle(!!errors.service), paddingRight: '2.5rem' }}
+              name="service" value={values.service} onChange={handleChange}
+              className={inputBase} style={inputSt('service')}
             >
               {t.step2.services.map((s, i) => (
                 <option key={i} value={i === 0 ? '' : s} disabled={i === 0}>{s}</option>
               ))}
             </select>
-            {errors.service && <p className={errClass}>{errors.service.message}</p>}
+            {errors.service && <p className={errCls}>{errors.service}</p>}
           </div>
 
           {/* Budget */}
           <div>
-            <label className={labelClass} style={{ color: 'var(--text)' }}>{t.step2.budget} *</label>
+            <label className={labelCls} style={{ color: 'var(--text)' }}>{t.step2.budget} *</label>
             <select
-              {...register('budget', { required: t.errors.required, validate: v => v !== '' || t.errors.required })}
-              className={inputClass}
-              style={{ ...inputStyle(!!errors.budget), paddingRight: '2.5rem' }}
+              name="budget" value={values.budget} onChange={handleChange}
+              className={inputBase} style={inputSt('budget')}
             >
               {t.step2.budgets.map((b, i) => (
                 <option key={i} value={i === 0 ? '' : b} disabled={i === 0}>{b}</option>
               ))}
             </select>
-            {errors.budget && <p className={errClass}>{errors.budget.message}</p>}
+            {errors.budget && <p className={errCls}>{errors.budget}</p>}
           </div>
         </div>
       )}
@@ -283,24 +298,18 @@ export default function MultiStepForm({ t, lang }: Props) {
       {step === 3 && (
         <div className="space-y-4">
           <div>
-            <label className={labelClass} style={{ color: 'var(--text)' }}>{t.step3.message} *</label>
+            <label className={labelCls} style={{ color: 'var(--text)' }}>{t.step3.message} *</label>
             <textarea
-              {...register('message', {
-                required: t.errors.required,
-                minLength: { value: 20, message: t.errors.messageTooShort },
-              })}
-              rows={5}
-              placeholder={t.step3.messagePh}
-              className={inputClass}
-              style={{ ...inputStyle(!!errors.message), resize: 'vertical' }}
+              name="message" value={values.message} onChange={handleChange}
+              rows={5} placeholder={t.step3.messagePh}
+              className={inputBase} style={{ ...inputSt('message'), resize: 'vertical' }}
             />
-            {errors.message && <p className={errClass}>{errors.message.message}</p>}
+            {errors.message && <p className={errCls}>{errors.message}</p>}
           </div>
           <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{t.step3.privacy}</p>
         </div>
       )}
 
-      {/* Error general */}
       {submitError && (
         <p className="mt-4 text-sm text-red-400 text-center">{submitError}</p>
       )}
@@ -310,13 +319,14 @@ export default function MultiStepForm({ t, lang }: Props) {
         {step > 1 && (
           <button
             type="button"
-            onClick={() => setStep(s => s - 1)}
+            onClick={() => { setErrors({}); setStep(s => s - 1); }}
             className="px-5 py-3 rounded-xl text-sm font-medium border transition-colors duration-200"
             style={{ borderColor: 'var(--border)', color: 'var(--text-muted)' }}
           >
             {t.back}
           </button>
         )}
+
         {step < TOTAL_STEPS ? (
           <button
             type="button"
