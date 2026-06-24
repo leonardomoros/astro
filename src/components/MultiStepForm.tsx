@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CheckCircle, ExternalLink, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import type { ContactTranslations } from '../content/contactTranslations';
 
 const COLOR_FROM  = '#a855f7';
@@ -27,7 +27,6 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export default function MultiStepForm({ t, lang }: Props) {
   const [step, setStep]               = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess]     = useState(false);
   const [submitError, setSubmitError] = useState('');
 
   const [values, setValues] = useState<FormValues>({
@@ -104,7 +103,10 @@ export default function MultiStepForm({ t, lang }: Props) {
         }),
       });
       if (!res.ok) throw new Error('api_error');
-      setIsSuccess(true);
+      const dest = lang === 'es'
+        ? `/gracias/?nombre=${encodeURIComponent(values.firstName)}`
+        : `/en/thank-you/?name=${encodeURIComponent(values.firstName)}`;
+      window.location.href = dest;
     } catch {
       setSubmitError(t.errorGeneral);
     } finally {
@@ -115,40 +117,6 @@ export default function MultiStepForm({ t, lang }: Props) {
   const stepLabelText = t.stepLabel
     .replace('{current}', String(step))
     .replace('{total}',   String(TOTAL_STEPS));
-
-  // ── Success ─────────────────────────────────────────────────────────────────
-  if (isSuccess) {
-    return (
-      <div className="text-center py-8 px-6 space-y-6">
-        <div
-          className="w-20 h-20 rounded-full flex items-center justify-center mx-auto"
-          style={{ background: `${COLOR_FROM}22`, border: `2px solid ${COLOR_FROM}55` }}
-        >
-          <CheckCircle size={40} style={{ color: COLOR_FROM }} />
-        </div>
-        <h3 className="text-2xl font-bold" style={{ color: 'var(--text)' }}>
-          {t.success.title.replace('{name}', values.firstName)}
-        </h3>
-        <p className="text-base" style={{ color: 'var(--text-muted)' }}>{t.success.body}</p>
-        <div className="flex items-center gap-3 py-2">
-          <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
-          <span className="text-sm" style={{ color: 'var(--text-muted)' }}>{t.success.separator}</span>
-          <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
-        </div>
-        <a
-          href={CAL_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm text-white"
-          style={{ background: `linear-gradient(to right, ${COLOR_FROM}, ${COLOR_TO})` }}
-        >
-          {t.success.calCta}
-          <ExternalLink size={15} />
-        </a>
-        <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{t.success.calNote}</p>
-      </div>
-    );
-  }
 
   // ── Form ────────────────────────────────────────────────────────────────────
   const inputBase = "w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all duration-200";
