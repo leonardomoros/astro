@@ -97,6 +97,20 @@
       "alternateSlug": "/servicios/email-marketing/"
     }
   },
+  "faqPage": {
+    "es": {
+      "title": "Preguntas Frecuentes | Gixlabs",
+      "description": "Respuestas a las dudas más comunes sobre servicios, precios, proceso y resultados de Gixlabs. ¿No encuentras tu pregunta? Escríbenos y te respondemos el mismo día.",
+      "slug": "/preguntas-frecuentes/",
+      "alternateSlug": "/en/faq/"
+    },
+    "en": {
+      "title": "Frequently Asked Questions | Gixlabs",
+      "description": "Answers to the most common questions about Gixlabs services, pricing, process, and results. Can't find your question? Write to us and we'll reply the same day.",
+      "slug": "/en/faq/",
+      "alternateSlug": "/preguntas-frecuentes/"
+    }
+  },
   "uxUi": {
     "es": {
       "title": "Diseño UX/UI | Figma, Design System y Prototipo | Gixlabs",

@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+import FAQPage from '../components/FAQPage';
+import SEO from '../components/SEO.astro';
+import JsonLd from '../components/JsonLd.astro';
+import seoData from '../data/seo.json';
+import { faqPageTranslations } from '../content/faqPageTranslations';
+
+const meta = seoData.faqPage.es;
+const BASE = 'https://gixlabs.com';
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio',                item: `${BASE}/` },
+    { '@type': 'ListItem', position: 2, name: 'Preguntas frecuentes',  item: `${BASE}/preguntas-frecuentes/` },
+  ],
+};
+
+const allQuestions = faqPageTranslations.es.categories.flatMap(cat => cat.questions);
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: allQuestions.map(item => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO
+      title={meta.title}
+      description={meta.description}
+      slug={meta.slug}
+      alternateSlug={meta.alternateSlug}
+      lang="es"
+    />
+    <JsonLd schema={breadcrumb} />
+    <JsonLd schema={faqSchema} />
+  </head>
+  <body>
+    <FAQPage client:load />
+  </body>
+</html>
