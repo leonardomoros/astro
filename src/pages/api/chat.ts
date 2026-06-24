@@ -17,22 +17,18 @@ GixLabs ofrece:
 
 TU OBJETIVO:
 1. Responder preguntas sobre los servicios de GixLabs de forma amigable y concisa
-2. Cuando alguien muestra interés en un servicio, cualificarlo como lead de manera natural
-3. Recopilar esta información de forma conversacional (no como un formulario):
-   - Nombre
-   - Email
-   - Qué servicio(s) necesita
-   - Nombre de su negocio o empresa
-4. Una vez que tengas los 4 datos, confirma que el equipo se pondrá en contacto e incluye este bloque EXACTO al FINAL de tu respuesta (sin espacios extra):
+2. Cuando alguien muestra interés en un servicio o pide más información, responde con entusiasmo y al final incluye el tag [FORM] para mostrar un formulario de contacto.
+   Ejemplo: "¡Genial! Puedo conectarte con nuestro equipo para darte más detalles. Completa este formulario y te contactamos en menos de 24 horas: [FORM]"
+3. Cuando el usuario envíe sus datos del formulario (aparecerán en formato estructurado), confirma la recepción con un mensaje cálido e incluye al final:
    [LEAD:{"name":"<nombre>","email":"<email>","service":"<servicio>","company":"<empresa>"}]
 
 REGLAS IMPORTANTES:
 - Responde SIEMPRE en el mismo idioma que usa el usuario (español o inglés)
 - Sé amigable, profesional y conciso (máximo 3-4 oraciones por respuesta)
-- No seas insistente — deja que la conversación fluya naturalmente
+- Muestra el formulario ([FORM]) cuando el usuario exprese interés, NO preguntes los datos uno por uno
 - Si preguntan por precios, menciona que los paquetes comienzan desde $500 y varían según el alcance del proyecto; recomienda siempre la consulta gratuita
 - La consulta gratuita está en: https://calendly.com/gixlabprojects/30min
-- NUNCA inventes datos del usuario — solo incluye el bloque [LEAD:...] cuando el usuario te haya dado los 4 datos explícitamente`;
+- NUNCA inventes datos del usuario`;
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -77,19 +73,24 @@ export const POST: APIRoute = async ({ request }) => {
 
     const fullText = response.content[0].type === 'text' ? response.content[0].text : '';
 
-    // Extract lead data if present
-    const leadMatch = fullText.match(/\[LEAD:(\{.*?\})\]/s);
-    let lead = null;
     let messageText = fullText;
+    let lead = null;
+    let showForm = false;
 
-    if (leadMatch) {
-      try {
-        lead = JSON.parse(leadMatch[1]);
-      } catch { /* ignore malformed JSON */ }
-      messageText = fullText.replace(/\s*\[LEAD:\{.*?\}\]/s, '').trim();
+    // Detect [FORM] tag
+    if (messageText.includes('[FORM]')) {
+      showForm = true;
+      messageText = messageText.replace('[FORM]', '').trim();
     }
 
-    return new Response(JSON.stringify({ message: messageText, lead }), {
+    // Extract [LEAD:{...}] tag
+    const leadMatch = messageText.match(/\[LEAD:(\{.*?\})\]/s);
+    if (leadMatch) {
+      try { lead = JSON.parse(leadMatch[1]); } catch { /* ignore */ }
+      messageText = messageText.replace(/\s*\[LEAD:\{.*?\}\]/s, '').trim();
+    }
+
+    return new Response(JSON.stringify({ message: messageText, lead, showForm }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });

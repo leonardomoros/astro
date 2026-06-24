@@ -19,6 +19,7 @@ function GixyIcon({ size = 36 }: { size?: number }) {
 interface Message {
   role: 'user' | 'assistant';
   content: string;
+  showForm?: boolean;
 }
 
 interface Lead {
@@ -26,6 +27,84 @@ interface Lead {
   email?: string;
   service?: string;
   company?: string;
+}
+
+const SERVICES = [
+  'Desarrollo Web', 'Estrategia SEO', 'Landing Pages',
+  'Email Marketing', 'Publicidad Pagada', 'Optimización Web',
+  'Diseño UX/UI', 'Otro',
+];
+
+/* ── Inline lead form ────────────────────────────────────────────── */
+function LeadForm({ onSubmit }: { onSubmit: (d: Lead) => void }) {
+  const [data, setData] = useState<Lead>({ name: '', email: '', service: '', company: '' });
+  const [sent, setSent] = useState(false);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!data.name || !data.email || !data.service) return;
+    setSent(true);
+    onSubmit(data);
+  }
+
+  if (sent) {
+    return (
+      <div className="mt-3 px-4 py-3 rounded-xl text-sm text-center"
+        style={{ background: 'rgba(79,70,229,0.12)', border: '1px solid rgba(79,70,229,0.25)', color: '#a5b4fc' }}>
+        ✓ ¡Datos enviados! Te contactaremos pronto.
+      </div>
+    );
+  }
+
+  const inputCls = "w-full px-3 py-2 rounded-lg text-sm text-gray-100 outline-none transition-colors";
+  const inputStyle = {
+    background: '#0f0f1a',
+    border: '1px solid rgba(79,70,229,0.25)',
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="mt-3 flex flex-col gap-2.5 p-4 rounded-xl"
+      style={{ background: 'rgba(79,70,229,0.07)', border: '1px solid rgba(79,70,229,0.2)' }}>
+      <p className="text-xs font-semibold text-indigo-400 tracking-wide uppercase mb-1">Tus datos de contacto</p>
+      <input
+        required
+        type="text"
+        placeholder="Tu nombre *"
+        value={data.name}
+        onChange={e => setData(p => ({ ...p, name: e.target.value }))}
+        className={inputCls} style={inputStyle}
+      />
+      <input
+        required
+        type="email"
+        placeholder="Tu email *"
+        value={data.email}
+        onChange={e => setData(p => ({ ...p, email: e.target.value }))}
+        className={inputCls} style={inputStyle}
+      />
+      <select
+        required
+        value={data.service}
+        onChange={e => setData(p => ({ ...p, service: e.target.value }))}
+        className={inputCls} style={{ ...inputStyle, color: data.service ? '#f1f5f9' : '#6b7280' }}
+      >
+        <option value="" disabled>Servicio que necesitas *</option>
+        {SERVICES.map(s => <option key={s} value={s}>{s}</option>)}
+      </select>
+      <input
+        type="text"
+        placeholder="Empresa o negocio"
+        value={data.company}
+        onChange={e => setData(p => ({ ...p, company: e.target.value }))}
+        className={inputCls} style={inputStyle}
+      />
+      <button type="submit"
+        className="mt-1 w-full py-2 rounded-lg text-sm font-semibold text-white transition-opacity hover:opacity-90"
+        style={{ background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }}>
+        Enviar →
+      </button>
+    </form>
+  );
 }
 
 const WELCOME: Message = {
@@ -57,36 +136,23 @@ export default function ChatBot() {
     }
   }, [isOpen]);
 
-  const sendMessage = useCallback(async () => {
-    const text = input.trim();
-    if (!text || isLoading) return;
-
-    const userMsg: Message = { role: 'user', content: text };
-    const nextMessages = [...messages, userMsg];
-
-    setMessages(nextMessages);
-    setInput('');
+  const callAPI = useCallback(async (nextMessages: Message[]) => {
     setIsLoading(true);
-
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: nextMessages }),
+        // Strip showForm flag before sending to API
+        body: JSON.stringify({ messages: nextMessages.map(({ role, content }) => ({ role, content })) }),
       });
-
       const data = await res.json();
       const botMsg: Message = {
         role: 'assistant',
         content: data.message ?? 'Lo siento, hubo un error. Intenta de nuevo.',
+        showForm: data.showForm ?? false,
       };
-
       setMessages(prev => [...prev, botMsg]);
-
-      if (data.lead) {
-        setLead(prev => ({ ...prev, ...data.lead }));
-      }
-
+      if (data.lead) setLead(prev => ({ ...prev, ...data.lead }));
       if (!isOpen) setHasUnread(true);
     } catch {
       setMessages(prev => [...prev, {
@@ -96,7 +162,26 @@ export default function ChatBot() {
     } finally {
       setIsLoading(false);
     }
-  }, [input, isLoading, messages, isOpen]);
+  }, [isOpen]);
+
+  const sendMessage = useCallback(async () => {
+    const text = input.trim();
+    if (!text || isLoading) return;
+    const userMsg: Message = { role: 'user', content: text };
+    const next = [...messages, userMsg];
+    setMessages(next);
+    setInput('');
+    await callAPI(next);
+  }, [input, isLoading, messages, callAPI]);
+
+  // Called when the user submits the inline lead form
+  const handleFormSubmit = useCallback(async (data: Lead) => {
+    const summary = `Mis datos de contacto:\nNombre: ${data.name}\nEmail: ${data.email}\nServicio: ${data.service}${data.company ? `\nEmpresa: ${data.company}` : ''}`;
+    const userMsg: Message = { role: 'user', content: summary };
+    const next = [...messages, userMsg];
+    setMessages(next);
+    await callAPI(next);
+  }, [messages, callAPI]);
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -147,28 +232,31 @@ export default function ChatBot() {
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-0">
           {messages.map((msg, i) => (
-            <div
-              key={i}
-              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-            >
-              {msg.role === 'assistant' && (
-                <div className="w-1 flex-shrink-0 mr-2" />
-              )}
-              <div
-                className={`
-                  max-w-[78%] px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed
-                  ${msg.role === 'user'
-                    ? 'text-white rounded-tr-sm'
-                    : 'text-gray-100 rounded-tl-sm'
+            <div key={i}>
+              <div className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                {msg.role === 'assistant' && <div className="w-1 flex-shrink-0 mr-2" />}
+                <div
+                  className={`
+                    max-w-[78%] px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed
+                    ${msg.role === 'user'
+                      ? 'text-white rounded-tr-sm'
+                      : 'text-gray-100 rounded-tl-sm'
+                    }
+                  `}
+                  style={msg.role === 'user'
+                    ? { background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }
+                    : { background: '#1e1e2a', border: '1px solid rgba(79,70,229,0.2)' }
                   }
-                `}
-                style={msg.role === 'user'
-                  ? { background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }
-                  : { background: '#1e1e2a', border: '1px solid rgba(79,70,229,0.2)' }
-                }
-              >
-                {msg.content}
+                >
+                  {msg.content}
+                </div>
               </div>
+              {/* Inline lead form — only on the last assistant message that requested it */}
+              {msg.showForm && i === messages.length - 1 && !lead?.email && (
+                <div className="ml-3">
+                  <LeadForm onSubmit={handleFormSubmit} />
+                </div>
+              )}
             </div>
           ))}
 
