@@ -26,7 +26,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     await resend.emails.send({
-      from:    'Gixlabs Contacto <noreply@gixlabs.com>',
+      from:    'Gixlabs Contacto <hola@gixlabs.com>',
       to:      ['hola@gixlabs.com'],
       replyTo: email,
       subject: `Nuevo contacto: ${servicio} — ${nombre} ${apellido}`,
