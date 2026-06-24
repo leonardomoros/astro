@@ -6,6 +6,7 @@ import WebDevFeatures from './WebDevFeatures';
 import WebDevProcess from './WebDevProcess';
 import WebDevStack from './WebDevStack';
 import WebDevFAQ from './WebDevFAQ';
+import PortfolioSection from './PortfolioSection';
 import FinalCTA from './FinalCTA';
 import { translations } from '../content/translations';
 import { webDevTranslations } from '../content/webDevTranslations';
@@ -38,6 +39,7 @@ export default function WebDevPage({ initialLang = 'es' }: Props) {
       <WebDevProcess  t={t.process}  />
       <WebDevStack    t={t.stack}    />
       <WebDevFAQ      t={t.faq}      />
+      <PortfolioSection t={ht.portfolioSection} />
       <FinalCTA       t={ht.finalCTA} />
       </main>
       <Footer         t={ht.footer}  />

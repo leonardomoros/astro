@@ -269,7 +269,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Sitio web con tienda online para empresa de herrería, reparación de santamarías y soldadura especializada.',
           tags: ['WordPress', 'E-Commerce', 'Desarrollo Web'],
-          href: '/portafolio/herreria-rua/',
+          href: 'https://www.herrariarua.com',
           image: '/images/portfolio/herreriarua.jpg.png',
           location: 'Venezuela',
           imagePosition: 'left top',
@@ -280,7 +280,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Plataforma web corporativa para empresa de soluciones innovadoras en la industria farmacéutica y alimentaria.',
           tags: ['WordPress', 'Desarrollo Web', 'Corporativo'],
-          href: '/portafolio/iberidia/',
+          href: 'https://www.iberidia.com',
           image: '/images/portfolio/iberidia.jpg.webp',
           location: 'España',
         },
@@ -290,7 +290,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Sitio profesional para empresa de instalación de sistemas de riego y cuidado de jardines en Staten Island, NY.',
           tags: ['WordPress', 'Desarrollo Web'],
-          href: '/portafolio/eg-lawn-sprinklers/',
+          href: 'https://www.eglawsparinkelrsny.com',
           image: '/images/portfolio/eglawnsprinklers.jpg.png',
           location: 'New York',
         },
@@ -300,7 +300,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Sitio corporativo para importadora y distribuidora de reactivos y materias primas para la industria farmacéutica.',
           tags: ['WordPress', 'Desarrollo Web', 'Corporativo'],
-          href: '/portafolio/sicafarm/',
+          href: 'https://www.siacafarm.com',
           image: '/images/portfolio/sicafarm.jpg.png',
           location: 'Venezuela',
           imagePosition: 'left top',
@@ -311,7 +311,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Presencia digital completa para marca venezolana de consumibles automotrices con 15 años en el mercado.',
           tags: ['WordPress', 'Desarrollo Web', 'SEO'],
-          href: '/portafolio/aksu-global/',
+          href: 'https://www.aksuglobal.com',
           image: '/images/portfolio/aksu.jpg.png',
           location: 'Venezuela',
         },
@@ -321,7 +321,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Tienda online de forros y accesorios para dispositivos móviles con catálogo digital y experiencia de compra optimizada.',
           tags: ['WordPress', 'E-Commerce'],
-          href: '/portafolio/jc-store/',
+          href: 'https://www.jcstoreccs.com',
           image: '/images/portfolio/jcstore.jpg.png',
           location: 'Venezuela',
         },
@@ -608,7 +608,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Website with online store for a metalwork, rolling-door maintenance, and specialized welding company.',
           tags: ['WordPress', 'E-Commerce', 'Web Dev'],
-          href: '/en/portfolio/herreria-rua/',
+          href: 'https://www.herrariarua.com',
           image: '/images/portfolio/herreriarua.jpg.png',
           location: 'Venezuela',
           imagePosition: 'left top',
@@ -619,7 +619,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Corporate web platform for a company offering innovative solutions to the pharmaceutical and food industries.',
           tags: ['WordPress', 'Web Dev', 'Corporate'],
-          href: '/en/portfolio/iberidia/',
+          href: 'https://www.iberidia.com',
           image: '/images/portfolio/iberidia.jpg.webp',
           location: 'Spain',
         },
@@ -629,7 +629,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Professional website for a lawn care and sprinkler installation company serving Staten Island, NY.',
           tags: ['WordPress', 'Web Dev'],
-          href: '/en/portfolio/eg-lawn-sprinklers/',
+          href: 'https://www.eglawsparinkelrsny.com',
           image: '/images/portfolio/eglawnsprinklers.jpg.png',
           location: 'New York',
         },
@@ -639,7 +639,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Corporate site for an importer and distributor of reagents and raw materials for the pharmaceutical industry.',
           tags: ['WordPress', 'Web Dev', 'Corporate'],
-          href: '/en/portfolio/sicafarm/',
+          href: 'https://www.siacafarm.com',
           image: '/images/portfolio/sicafarm.jpg.png',
           location: 'Venezuela',
           imagePosition: 'left top',
@@ -650,7 +650,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Full digital presence for a Venezuelan automotive consumables brand with 15 years in the market.',
           tags: ['WordPress', 'Web Dev', 'SEO'],
-          href: '/en/portfolio/aksu-global/',
+          href: 'https://www.aksuglobal.com',
           image: '/images/portfolio/aksu.jpg.png',
           location: 'Venezuela',
         },
@@ -660,7 +660,7 @@ export const translations: Record<Lang, Translations> = {
           description:
             'Online store for mobile device cases and accessories with an optimized shopping experience.',
           tags: ['WordPress', 'E-Commerce'],
-          href: '/en/portfolio/jc-store/',
+          href: 'https://www.jcstoreccs.com',
           image: '/images/portfolio/jcstore.jpg.png',
           location: 'Venezuela',
         },

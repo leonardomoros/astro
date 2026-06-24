@@ -128,6 +128,8 @@ export default function PortfolioSection({ t }: PortfolioSectionProps) {
                     {/* Modern CTA — bottom right, visible only on card hover */}
                     <a
                       href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="
                         group/btn flex-shrink-0
                         flex items-center gap-1.5
