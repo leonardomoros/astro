@@ -51,6 +51,10 @@ export default function WebDevPhilosophy({ t }: WebDevPhilosophyProps) {
 
             <a
               href={t.ctaHref}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('proceso')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="
                 inline-flex items-center gap-2 group
                 text-sm font-medium

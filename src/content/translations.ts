@@ -247,7 +247,7 @@ export const translations: Record<Lang, Translations> = {
       paragraph:
         'Un sitio web sin estrategia es solo un folleto en línea. Nosotros construimos sistemas digitales que atraen, convierten y retienen clientes — integrando SEO, publicidad, email y analítica desde el primer día.',
       cta: 'Conoce nuestro proceso',
-      ctaHref: '/proceso/',
+      ctaHref: '#proceso',
       features: [
         'Velocidad técnica optimizada para conversión',
         'Diseño centrado en la experiencia del usuario',
@@ -586,7 +586,7 @@ export const translations: Record<Lang, Translations> = {
       paragraph:
         'A website without strategy is just an online brochure. We build digital systems that attract, convert, and retain customers — integrating SEO, advertising, email, and analytics from day one.',
       cta: 'See our process',
-      ctaHref: '/en/process/',
+      ctaHref: '#proceso',
       features: [
         'Technical speed optimized for conversion',
         'User experience-centered design',
