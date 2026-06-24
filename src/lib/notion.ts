@@ -1,5 +1,3 @@
-import { Client } from '@notionhq/client';
-
 export interface LeadData {
   name?: string;
   email?: string;
@@ -18,43 +16,56 @@ export async function createLeadInNotion(lead: LeadData): Promise<string | null>
     return null;
   }
 
-  const notion = new Client({ auth: apiKey });
+  const fecha = new Date().toLocaleDateString('es-MX', {
+    day: '2-digit', month: '2-digit', year: 'numeric',
+    hour: '2-digit', minute: '2-digit',
+  });
 
-  try {
-    const page = await notion.pages.create({
-      parent: { database_id: dbId },
-      properties: {
-        // Title field — must match the actual "Title" column name in your DB
-        Nombre: {
-          title: [{ text: { content: lead.name ?? 'Sin nombre' } }],
-        },
-        Email: {
-          email: lead.email ?? null,
-        },
-        Servicio: {
-          select: lead.service ? { name: lead.service } : undefined,
-        },
-        Empresa: {
-          rich_text: [{ text: { content: lead.company ?? '' } }],
-        },
-        Estado: {
-          select: { name: 'Nuevo' },
-        },
-        Fuente: {
-          select: { name: lead.source ?? 'Web Chat' },
-        },
-        Notas: {
-          rich_text: [{ text: { content: lead.notes ?? '' } }],
-        },
-        Fecha: {
-          date: { start: new Date().toISOString().split('T')[0] },
-        },
+  const body = {
+    parent: { database_id: dbId },
+    properties: {
+      // Only use the Title property — guaranteed to exist in any Notion DB
+      Nombre: {
+        title: [{ text: { content: lead.name ?? 'Sin nombre' } }],
       },
-    });
+    },
+    // Put all other data in the page body as rich text
+    children: [
+      paragraph(`📧 Email: ${lead.email ?? '—'}`),
+      paragraph(`🛠 Servicio: ${lead.service ?? '—'}`),
+      paragraph(`🏢 Empresa: ${lead.company ?? '—'}`),
+      paragraph(`📍 Fuente: ${lead.source ?? 'Web Chat'}`),
+      paragraph(`📅 Fecha: ${fecha}`),
+      ...(lead.notes ? [paragraph(`📝 Notas: ${lead.notes}`)] : []),
+    ],
+  };
 
-    return page.id;
-  } catch (err) {
-    console.error('[notion] Failed to create lead:', err);
-    throw err;
+  const res = await fetch('https://api.notion.com/v1/pages', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+      'Notion-Version': '2022-06-28',
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    console.error('[notion] API error:', err);
+    throw new Error(err);
   }
+
+  const data = await res.json() as { id: string };
+  return data.id;
+}
+
+function paragraph(text: string) {
+  return {
+    object: 'block',
+    type: 'paragraph',
+    paragraph: {
+      rich_text: [{ type: 'text', text: { content: text } }],
+    },
+  };
 }
