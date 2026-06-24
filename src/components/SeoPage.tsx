@@ -32,12 +32,14 @@ export default function SeoPage({ initialLang = 'es' }: Props) {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <Nav lang={lang} setLang={setLang} t={ht.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
+      <main>
       <SeoHero     t={t.hero}     />
       <SeoFeatures t={t.features} />
       <SeoProcess  t={t.process}  />
       <SeoResults  t={t.results}  />
       <SeoFAQ      t={t.faq}      />
       <FinalCTA    t={ht.finalCTA} colorFrom="#10b981" colorTo="#3b82f6" />
+      </main>
       <Footer      t={ht.footer}  />
     </div>
   );

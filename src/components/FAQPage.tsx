@@ -53,7 +53,7 @@ export default function FAQPage({ initialLang = 'es' }: Props) {
         lang={lang} t={ht.nav} theme={theme}
         toggleTheme={toggleTheme} alternateHref={alternateHref}
       />
-
+      <main>
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div
@@ -236,6 +236,7 @@ export default function FAQPage({ initialLang = 'es' }: Props) {
         </div>
       </section>
 
+      </main>
       <Footer t={ht.footer} />
     </div>
   );

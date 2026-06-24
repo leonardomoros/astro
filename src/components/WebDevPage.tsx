@@ -32,12 +32,14 @@ export default function WebDevPage({ initialLang = 'es' }: Props) {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <Nav lang={lang} setLang={setLang} t={ht.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
+      <main>
       <WebDevHero     t={t.hero}     />
       <WebDevFeatures t={t.features} />
       <WebDevProcess  t={t.process}  />
       <WebDevStack    t={t.stack}    />
       <WebDevFAQ      t={t.faq}      />
       <FinalCTA       t={ht.finalCTA} />
+      </main>
       <Footer         t={ht.footer}  />
     </div>
   );

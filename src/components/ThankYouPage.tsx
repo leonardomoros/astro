@@ -80,7 +80,7 @@ export default function ThankYouPage({ initialLang = 'es' }: Props) {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <Nav lang={lang} t={ht.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
-
+      <main>
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="relative pt-28 pb-16 overflow-hidden">
         <div
@@ -176,6 +176,7 @@ export default function ThankYouPage({ initialLang = 'es' }: Props) {
         </div>
       </section>
 
+      </main>
       <Footer t={ht.footer} />
     </div>
   );

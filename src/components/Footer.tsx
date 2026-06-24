@@ -90,9 +90,9 @@ export default function Footer({ t }: FooterProps) {
           {/* Nav columns */}
           {t.columns.map((col) => (
             <div key={col.title}>
-              <h4 className="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--text)] mb-4">
+              <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[var(--text)] mb-4">
                 {col.title}
-              </h4>
+              </p>
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.label}>

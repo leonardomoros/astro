@@ -38,6 +38,7 @@ export default function HomePage({ initialLang = 'es' }: HomePageProps) {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <Nav lang={lang} setLang={setLang} t={t.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
+      <main>
       <Hero t={t.hero} lang={lang} />
       <StatsSection t={t.statsSection} />
       <ServicesSection t={t.servicesSection} />
@@ -45,6 +46,7 @@ export default function HomePage({ initialLang = 'es' }: HomePageProps) {
       <PortfolioSection t={t.portfolioSection} />
       <MethodologySection t={t.methodologySection} />
       <FinalCTA t={t.finalCTA} />
+      </main>
       <Footer t={t.footer} />
     </div>
   );

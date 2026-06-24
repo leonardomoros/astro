@@ -37,6 +37,7 @@ export default function ServicesPage({ initialLang = 'es' }: ServicesPageProps) 
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <Nav lang={lang} setLang={setLang} t={ht.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
+      <main>
       <ServicesHero t={t.hero} lang={lang} />
       <ServicesGrid t={t.servicesGrid} />
       <ServicesBanner t={t.banner} />
@@ -46,6 +47,7 @@ export default function ServicesPage({ initialLang = 'es' }: ServicesPageProps) 
       <ServicesBeyond t={t.beyond} />
       <ServicesPayments t={t.payments} />
       <FinalCTA t={ht.finalCTA} />
+      </main>
       <Footer t={ht.footer} />
     </div>
   );

@@ -37,12 +37,14 @@ export default function UxUiPage({ initialLang = 'es' }: Props) {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <Nav lang={lang} t={ht.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
+      <main>
       <UxUiHero     t={t.hero}     />
       <UxUiFeatures t={t.features} />
       <UxUiProcess  t={t.process}  />
       <UxUiResults  t={t.results}  />
       <UxUiFAQ      t={t.faq}      />
       <FinalCTA     t={ht.finalCTA} colorFrom={COLOR_FROM} colorTo={COLOR_TO} />
+      </main>
       <Footer       t={ht.footer}  />
     </div>
   );

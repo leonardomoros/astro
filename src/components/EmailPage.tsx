@@ -37,12 +37,14 @@ export default function EmailPage({ initialLang = 'es' }: Props) {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <Nav lang={lang} t={ht.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
+      <main>
       <EmailHero     t={t.hero}     />
       <EmailFeatures t={t.features} />
       <EmailProcess  t={t.process}  />
       <EmailResults  t={t.results}  />
       <EmailFAQ      t={t.faq}      />
       <FinalCTA      t={ht.finalCTA} colorFrom={COLOR_FROM} colorTo={COLOR_TO} />
+      </main>
       <Footer        t={ht.footer}  />
     </div>
   );

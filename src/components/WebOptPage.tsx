@@ -37,12 +37,14 @@ export default function WebOptPage({ initialLang = 'es' }: Props) {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <Nav lang={lang} t={ht.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
+      <main>
       <WebOptHero     t={t.hero}     />
       <WebOptFeatures t={t.features} />
       <WebOptProcess  t={t.process}  />
       <WebOptResults  t={t.results}  />
       <WebOptFAQ      t={t.faq}      />
       <FinalCTA       t={ht.finalCTA} colorFrom={COLOR_FROM} colorTo={COLOR_TO} />
+      </main>
       <Footer         t={ht.footer}  />
     </div>
   );

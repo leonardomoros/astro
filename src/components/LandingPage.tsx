@@ -32,12 +32,14 @@ export default function LandingPage({ initialLang = 'es' }: Props) {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <Nav lang={lang} t={ht.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
+      <main>
       <LandingHero     t={t.hero}     />
       <LandingFeatures t={t.features} />
       <LandingProcess  t={t.process}  />
       <LandingResults  t={t.results}  />
       <LandingFAQ      t={t.faq}      />
       <FinalCTA        t={ht.finalCTA} colorFrom="#3b82f6" colorTo="#06b6d4" />
+      </main>
       <Footer          t={ht.footer}  />
     </div>
   );

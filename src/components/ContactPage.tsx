@@ -33,7 +33,7 @@ export default function ContactPage({ initialLang = 'es' }: Props) {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
       <Nav lang={lang} t={ht.nav} theme={theme} toggleTheme={toggleTheme} alternateHref={alternateHref} />
-
+      <main>
       {/* ── Hero + Form ─────────────────────────────────────────────────────── */}
       <section className="relative pt-28 pb-24 overflow-hidden">
         {/* Background dots */}
@@ -167,6 +167,7 @@ export default function ContactPage({ initialLang = 'es' }: Props) {
         </div>
       </section>
 
+      </main>
       <Footer t={ht.footer} />
     </div>
   );
