@@ -208,6 +208,7 @@ const PHASE_VISUALS = [
 export default function MethodologySection({ t }: MethodologySectionProps) {
   const [activePhase, setActivePhase] = useState(0);
   const phaseRefs   = useRef<(HTMLDivElement | null)[]>([]);
+  const tabRefs     = useRef<(HTMLButtonElement | null)[]>([]);
   const headerRef   = useScrollReveal<HTMLDivElement>();
 
   // IntersectionObserver — updates active phase as each section enters the viewport
@@ -224,7 +225,14 @@ export default function MethodologySection({ t }: MethodologySectionProps) {
     return () => observers.forEach(o => o?.disconnect());
   }, []);
 
-  // Click on left tab → smooth scroll to that phase section
+  // Scroll active mobile tab into view when phase changes
+  useEffect(() => {
+    tabRefs.current[activePhase]?.scrollIntoView({
+      behavior: 'smooth', block: 'nearest', inline: 'center',
+    });
+  }, [activePhase]);
+
+  // Click on tab → smooth scroll to that phase section
   function scrollToPhase(i: number) {
     phaseRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
@@ -247,10 +255,43 @@ export default function MethodologySection({ t }: MethodologySectionProps) {
           <p className="text-lg leading-relaxed lg:pb-1 text-[var(--text-muted)]">{t.subtitle}</p>
         </div>
 
+        {/* ── Mobile: horizontal scrollable tabs ── */}
+        <div className="lg:hidden sticky top-16 z-20 -mx-4 sm:-mx-6 px-4 sm:px-6 pb-3 pt-2 bg-[var(--bg)] border-b border-[var(--border)] mb-6">
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+            {t.phases.map((p, i) => (
+              <button
+                key={p.number}
+                ref={el => { tabRefs.current[i] = el; }}
+                onClick={() => scrollToPhase(i)}
+                className={`
+                  flex-shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl
+                  transition-all duration-200 border text-sm font-medium
+                  ${activePhase === i
+                    ? 'bg-[var(--bg-card)] border-[#a855f7]/50 text-[var(--text)] shadow-lg shadow-[#a855f7]/10'
+                    : 'border-[var(--border)] text-[var(--text-muted)]'
+                  }
+                `}
+              >
+                <span className={`
+                  w-7 h-7 rounded-lg text-xs font-bold flex items-center justify-center flex-shrink-0
+                  transition-all duration-200
+                  ${activePhase === i
+                    ? 'bg-gradient-to-br from-[#a855f7] to-[#ec4899] text-white shadow-md shadow-purple-500/30'
+                    : 'bg-[var(--bg-card)] text-[var(--text-muted)]'
+                  }
+                `}>
+                  {p.number}
+                </span>
+                <span className="whitespace-nowrap">{p.title}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* ── Two-column layout ── */}
         <div className="grid lg:grid-cols-[300px_1fr] gap-8 items-start">
 
-          {/* ── Left: sticky phase list ── */}
+          {/* ── Left: sticky phase list (desktop only) ── */}
           <div className="hidden lg:flex flex-col gap-2 sticky top-24">
             {t.phases.map((p, i) => (
               <button
