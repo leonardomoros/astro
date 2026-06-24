@@ -11,14 +11,14 @@ interface MethodologySectionProps {
 
 function VisualDiscovery() {
   return (
-    <div className="rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
+    <div className="h-full rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
       <div className="flex items-center gap-1.5 px-4 py-2.5 bg-[#1a1a1a] border-b border-white/5">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         <span className="ml-2 text-[11px] text-zinc-500 font-mono">audit_report.gixlabs</span>
       </div>
-      <div className="p-5 space-y-3.5">
+      <div className="p-3 space-y-2">
         <p className="text-[11px] font-mono text-[#a855f7] mb-1">// Diagnóstico digital inicial</p>
         {[
           { label: 'Velocidad web',    val: 24, color: 'from-red-500 to-red-400' },
@@ -58,15 +58,15 @@ function VisualStrategy() {
     { q: 'Q4', label: 'Escalar ROI',      color: '#a855f7' },
   ];
   return (
-    <div className="rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
+    <div className="h-full rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
       <div className="flex items-center gap-1.5 px-4 py-2.5 bg-[#1a1a1a] border-b border-white/5">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         <span className="ml-2 text-[11px] text-zinc-500 font-mono">plan_digital_2025.gixlabs</span>
       </div>
-      <div className="p-5 space-y-2.5">
-        <p className="text-[11px] font-mono text-[#a855f7] mb-3">// Hoja de ruta estratégica</p>
+      <div className="p-3 space-y-1.5">
+        <p className="text-[11px] font-mono text-[#a855f7] mb-2">// Hoja de ruta estratégica</p>
         {quarters.map((q) => (
           <div key={q.q} className="flex items-center gap-3 p-2.5 rounded-lg bg-white/[0.03] border border-white/5">
             <span
@@ -86,17 +86,17 @@ function VisualStrategy() {
 
 function VisualDesign() {
   return (
-    <div className="rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
+    <div className="h-full rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
       <div className="flex items-center gap-1.5 px-4 py-2.5 bg-[#1a1a1a] border-b border-white/5">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         <span className="ml-2 text-[11px] text-zinc-500 font-mono">diseño_ui.gixlabs</span>
       </div>
-      <div className="p-5">
-        <p className="text-[11px] font-mono text-[#a855f7] mb-4">// Sistema de diseño</p>
+      <div className="p-3">
+        <p className="text-[11px] font-mono text-[#a855f7] mb-2">// Sistema de diseño</p>
         {/* Color palette */}
-        <div className="flex gap-2 mb-4">
+        <div className="flex gap-1.5 mb-3">
           {['#a855f7','#ec4899','#2563eb','#0f0f0f','#f8fafc'].map((c) => (
             <div key={c} className="w-8 h-8 rounded-lg border border-white/10 shadow-lg" style={{ background: c }} />
           ))}
@@ -134,14 +134,14 @@ function VisualDevelopment() {
     { text: 'SEO            100  ████████', color: 'text-[#86efac]' },
   ];
   return (
-    <div className="rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
+    <div className="h-full rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
       <div className="flex items-center gap-1.5 px-4 py-2.5 bg-[#1a1a1a] border-b border-white/5">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         <span className="ml-2 text-[11px] text-zinc-500 font-mono">terminal — zsh</span>
       </div>
-      <div className="p-5 font-mono text-[12px] space-y-1.5">
+      <div className="p-3 font-mono text-[12px] space-y-1">
         {lines.map((l, i) => (
           <div key={i} className={l.color}>{l.text || <span>&nbsp;</span>}</div>
         ))}
@@ -152,14 +152,14 @@ function VisualDevelopment() {
 
 function VisualLaunch() {
   return (
-    <div className="rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
+    <div className="h-full rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
       <div className="flex items-center gap-1.5 px-4 py-2.5 bg-[#1a1a1a] border-b border-white/5">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         <span className="ml-2 text-[11px] text-zinc-500 font-mono">launch_dashboard.gixlabs</span>
       </div>
-      <div className="p-5 space-y-3">
+      <div className="p-3 space-y-2">
         <div className="flex items-center justify-between mb-1">
           <p className="text-[11px] font-mono text-[#a855f7]">// Lanzamiento activo</p>
           <span className="flex items-center gap-1.5 text-[11px] text-green-400">
@@ -196,14 +196,14 @@ function VisualLaunch() {
 
 function VisualOptimization() {
   return (
-    <div className="rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
+    <div className="h-full rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/8 shadow-2xl">
       <div className="flex items-center gap-1.5 px-4 py-2.5 bg-[#1a1a1a] border-b border-white/5">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         <span className="ml-2 text-[11px] text-zinc-500 font-mono">reporte_mensual.gixlabs</span>
       </div>
-      <div className="p-5 space-y-3.5">
+      <div className="p-3 space-y-2">
         <p className="text-[11px] font-mono text-[#a855f7] mb-1">// Resultados · Mes 6</p>
         {[
           { label: 'Tráfico orgánico', delta: '+68%', val: 68, color: 'from-[#a855f7] to-[#c084fc]', textColor: 'text-[#c084fc]' },
@@ -314,7 +314,7 @@ export default function MethodologySection({ t }: MethodologySectionProps) {
             key={active}
             className="bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl overflow-hidden animate-phase-in"
           >
-            <div className="grid lg:grid-cols-[1fr_340px] divide-y lg:divide-y-0 lg:divide-x divide-[var(--border)]">
+            <div className="grid lg:grid-cols-[1fr_340px]">
 
               {/* Text column */}
               <div className="p-8 lg:p-10">
@@ -348,7 +348,7 @@ export default function MethodologySection({ t }: MethodologySectionProps) {
 
               {/* Visual column */}
               <div className="p-6 flex items-center justify-center">
-                <div className="w-full">
+                <div className="w-full aspect-video overflow-hidden rounded-xl">
                   <Visual />
                 </div>
               </div>
