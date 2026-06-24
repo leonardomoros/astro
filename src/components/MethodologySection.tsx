@@ -309,44 +309,50 @@ export default function MethodologySection({ t }: MethodologySectionProps) {
             ))}
           </div>
 
-          {/* Phase content */}
+          {/* Phase content — two columns: text left, visual right */}
           <div
             key={active}
             className="bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl overflow-hidden animate-phase-in"
           >
-            {/* Visual */}
-            <div className="p-6 pb-4 border-b border-[var(--border)] bg-[var(--bg)]">
-              <Visual />
-            </div>
+            <div className="grid lg:grid-cols-[1fr_340px] divide-y lg:divide-y-0 lg:divide-x divide-[var(--border)]">
 
-            {/* Text content */}
-            <div className="p-8 lg:p-10">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-5xl font-bold gradient-text tabular-nums leading-none">
-                  {phase.number}
-                </span>
-                <div>
-                  <p className="text-[11px] font-semibold tracking-[0.2em] text-[#a855f7] uppercase mb-0.5">
-                    {t.eyebrow.split(' ')[0]}
-                  </p>
-                  <h3 className="text-2xl font-bold text-[var(--text)]">{phase.title}</h3>
+              {/* Text column */}
+              <div className="p-8 lg:p-10">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="text-5xl font-bold gradient-text tabular-nums leading-none">
+                    {phase.number}
+                  </span>
+                  <div>
+                    <p className="text-[11px] font-semibold tracking-[0.2em] text-[#a855f7] uppercase mb-0.5">
+                      {t.eyebrow.split(' ')[0]}
+                    </p>
+                    <h3 className="text-2xl font-bold text-[var(--text)]">{phase.title}</h3>
+                  </div>
+                </div>
+
+                <p className="text-base lg:text-lg leading-relaxed mb-8 text-[var(--text-muted)]">
+                  {phase.description}
+                </p>
+
+                <ul className="space-y-3">
+                  {phase.details.map((detail, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <div className="mt-0.5 w-5 h-5 flex-shrink-0 rounded-full bg-gradient-to-br from-[#a855f7] to-[#ec4899] flex items-center justify-center shadow-sm shadow-purple-500/20">
+                        <Check size={11} className="text-white" strokeWidth={2.5} />
+                      </div>
+                      <span className="text-sm lg:text-base text-[var(--text)]">{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Visual column */}
+              <div className="p-6 flex items-center justify-center bg-[var(--bg)]">
+                <div className="w-full">
+                  <Visual />
                 </div>
               </div>
 
-              <p className="text-base lg:text-lg leading-relaxed mb-8 text-[var(--text-muted)]">
-                {phase.description}
-              </p>
-
-              <ul className="space-y-3">
-                {phase.details.map((detail, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="mt-0.5 w-5 h-5 flex-shrink-0 rounded-full bg-gradient-to-br from-[#a855f7] to-[#ec4899] flex items-center justify-center shadow-sm shadow-purple-500/20">
-                      <Check size={11} className="text-white" strokeWidth={2.5} />
-                    </div>
-                    <span className="text-sm lg:text-base text-[var(--text)]">{detail}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
 
