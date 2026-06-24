@@ -97,6 +97,20 @@
       "alternateSlug": "/servicios/email-marketing/"
     }
   },
+  "uxUi": {
+    "es": {
+      "title": "Diseño UX/UI | Figma, Design System y Prototipo | Gixlabs",
+      "description": "Diseñamos interfaces pixel-perfect centradas en el usuario: investigación, wireframes, prototipo Figma y design system. +38% conversión promedio en rediseños.",
+      "slug": "/servicios/diseno-ux-ui/",
+      "alternateSlug": "/en/services/ux-ui-design/"
+    },
+    "en": {
+      "title": "UX/UI Design | Figma, Design System & Prototype | Gixlabs",
+      "description": "We design pixel-perfect user-centered interfaces: research, wireframes, Figma prototype, and design system. +38% average conversion improvement in redesigns.",
+      "slug": "/en/services/ux-ui-design/",
+      "alternateSlug": "/servicios/diseno-ux-ui/"
+    }
+  },
   "webDev": {
     "es": {
       "title": "Desarrollo Web a Medida | Astro, React, Next.js | Gixlabs",
