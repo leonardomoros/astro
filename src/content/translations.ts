@@ -96,6 +96,22 @@ export interface Translations {
       details: string[];
     }[];
   };
+  techCarousel: {
+    eyebrow: string;
+    headline: string;
+  };
+  testimonialsSection: {
+    eyebrow: string;
+    headline: string;
+    subtitle: string;
+    items: {
+      quote: string;
+      author: string;
+      role: string;
+      company: string;
+      initials: string;
+    }[];
+  };
   finalCTA: {
     eyebrow: string;
     headline: string;
@@ -397,6 +413,59 @@ export const translations: Record<Lang, Translations> = {
             'Ajuste de presupuestos según ROI',
             'Sesiones estratégicas de revisión trimestral',
           ],
+        },
+      ],
+    },
+    techCarousel: {
+      eyebrow: 'NUESTRO STACK',
+      headline: 'Herramientas que usamos para construir tu presencia digital',
+    },
+    testimonialsSection: {
+      eyebrow: 'TESTIMONIOS',
+      headline: 'Lo que dicen nuestros clientes',
+      subtitle: 'Resultados reales de negocios reales. Aquí lo que dicen quienes ya trabajan con nosotros.',
+      items: [
+        {
+          quote: 'GixLabs transformó nuestra presencia online por completo. Pasamos de no tener página web a recibir consultas todos los días. El equipo es profesional, rápido y muy fácil de trabajar.',
+          author: 'Carlos Rua',
+          role: 'Propietario',
+          company: 'Herrería Rua',
+          initials: 'CR',
+        },
+        {
+          quote: 'El diseño que crearon para nuestro sitio refleja exactamente quiénes somos. Las ventas en línea aumentaron notablemente desde el lanzamiento. Muy recomendados.',
+          author: 'Ana González',
+          role: 'Directora',
+          company: 'JC Store',
+          initials: 'AG',
+        },
+        {
+          quote: 'Contratamos a GixLabs para nuestra estrategia digital y los resultados superaron nuestras expectativas. Su conocimiento técnico y atención al detalle marcan la diferencia.',
+          author: 'Roberto Campos',
+          role: 'CEO',
+          company: 'AKSU Global',
+          initials: 'RC',
+        },
+        {
+          quote: 'En pocas semanas teníamos una página que antes tardábamos meses en imaginar. El proceso fue claro y organizado. Nuestros clientes nos felicitan constantemente por el sitio.',
+          author: 'María Pérez',
+          role: 'Fundadora',
+          company: 'SICAFARM',
+          initials: 'MP',
+        },
+        {
+          quote: 'La estrategia de posicionamiento que implementaron para IBERIDIA nos ayudó a llegar a clientes que nunca antes nos encontraban. Excelente trabajo y comunicación impecable.',
+          author: 'David Ibáñez',
+          role: 'Gerente General',
+          company: 'IBERIDIA',
+          initials: 'DI',
+        },
+        {
+          quote: 'Desde que GixLabs rediseñó nuestro sitio y configuró las campañas publicitarias, el volumen de solicitudes de presupuesto creció más del 200%. Un equipo que realmente entrega resultados.',
+          author: 'Eduardo García',
+          role: 'Propietario',
+          company: 'EG Lawn Sprinklers',
+          initials: 'EG',
         },
       ],
     },
@@ -736,6 +805,59 @@ export const translations: Record<Lang, Translations> = {
             'Budget adjustments based on ROI',
             'Quarterly strategic review sessions',
           ],
+        },
+      ],
+    },
+    techCarousel: {
+      eyebrow: 'OUR STACK',
+      headline: 'Tools we use to build your digital presence',
+    },
+    testimonialsSection: {
+      eyebrow: 'TESTIMONIALS',
+      headline: 'What our clients say',
+      subtitle: 'Real results from real businesses. Here is what those who already work with us have to say.',
+      items: [
+        {
+          quote: 'GixLabs completely transformed our online presence. We went from having no website to receiving inquiries every day. The team is professional, fast, and very easy to work with.',
+          author: 'Carlos Rua',
+          role: 'Owner',
+          company: 'Herrería Rua',
+          initials: 'CR',
+        },
+        {
+          quote: 'The design they created for our site reflects exactly who we are. Online sales increased noticeably since launch. Highly recommended.',
+          author: 'Ana González',
+          role: 'Director',
+          company: 'JC Store',
+          initials: 'AG',
+        },
+        {
+          quote: 'We hired GixLabs for our digital strategy and the results exceeded our expectations. Their technical knowledge and attention to detail make a real difference.',
+          author: 'Roberto Campos',
+          role: 'CEO',
+          company: 'AKSU Global',
+          initials: 'RC',
+        },
+        {
+          quote: 'In a few weeks we had a website we had been imagining for months. The process was clear and organized. Our clients constantly compliment us on the site.',
+          author: 'María Pérez',
+          role: 'Founder',
+          company: 'SICAFARM',
+          initials: 'MP',
+        },
+        {
+          quote: 'The SEO strategy they implemented for IBERIDIA helped us reach clients who had never found us before. Excellent work and impeccable communication.',
+          author: 'David Ibáñez',
+          role: 'General Manager',
+          company: 'IBERIDIA',
+          initials: 'DI',
+        },
+        {
+          quote: 'Since GixLabs redesigned our site and set up our ad campaigns, the volume of quote requests grew more than 200%. A team that truly delivers results.',
+          author: 'Eduardo García',
+          role: 'Owner',
+          company: 'EG Lawn Sprinklers',
+          initials: 'EG',
         },
       ],
     },

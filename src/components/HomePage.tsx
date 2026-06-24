@@ -3,8 +3,10 @@ import Nav from './Nav';
 import Hero from './Hero';
 import StatsSection from './StatsSection';
 import ServicesSection from './ServicesSection';
+import TechCarousel from './TechCarousel';
 import WebDevPhilosophy from './WebDevPhilosophy';
 import PortfolioSection from './PortfolioSection';
+import TestimonialsSection from './TestimonialsSection';
 import MethodologySection from './MethodologySection';
 import FinalCTA from './FinalCTA';
 import Footer from './Footer';
@@ -42,8 +44,10 @@ export default function HomePage({ initialLang = 'es' }: HomePageProps) {
       <Hero t={t.hero} lang={lang} />
       <StatsSection t={t.statsSection} />
       <ServicesSection t={t.servicesSection} />
+      <TechCarousel eyebrow={t.techCarousel.eyebrow} headline={t.techCarousel.headline} />
       <WebDevPhilosophy t={t.webDevPhilosophy} />
       <PortfolioSection t={t.portfolioSection} />
+      <TestimonialsSection {...t.testimonialsSection} />
       <MethodologySection t={t.methodologySection} />
       <FinalCTA t={t.finalCTA} />
       </main>
