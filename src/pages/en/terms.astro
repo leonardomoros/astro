@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import TermsPage from '../../components/TermsPage';
+---
+
+<BaseLayout
+  title="Terms of Use | GixLabs"
+  description="Read the terms and conditions for using the GixLabs website."
+  slug="/en/terms/"
+  alternateSlug="/terminos/"
+  lang="en"
+>
+  <TermsPage client:load initialLang="en" />
+</BaseLayout>

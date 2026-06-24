@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import PrivacyPage from '../components/PrivacyPage';
+---
+
+<BaseLayout
+  title="Política de Privacidad | GixLabs"
+  description="Conoce cómo GixLabs recopila, utiliza y protege tus datos personales."
+  slug="/privacidad/"
+  alternateSlug="/en/privacy/"
+  lang="es"
+>
+  <PrivacyPage client:load initialLang="es" />
+</BaseLayout>
