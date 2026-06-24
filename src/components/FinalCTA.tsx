@@ -78,11 +78,11 @@ export default function FinalCTA({ t, colorFrom = '#a855f7', colorTo = '#ec4899'
           </div>
 
           {/* Trust row */}
-          <div className="flex items-center justify-center divide-x divide-[var(--border)]">
+          <div className="flex items-stretch justify-center divide-x divide-[var(--border)]">
             {t.trust.map((item) => (
-              <div key={item.label} className="px-6 first:pl-0 last:pr-0 text-center">
+              <div key={item.label} className="px-3 sm:px-6 first:pl-0 last:pr-0 text-center flex-1 max-w-[140px] sm:max-w-none">
                 <div
-                  className="text-2xl font-bold leading-none mb-1"
+                  className="text-xl sm:text-2xl font-bold leading-none mb-1"
                   style={{
                     background:           `linear-gradient(to right, ${colorFrom}, ${colorTo})`,
                     WebkitBackgroundClip: 'text',
@@ -93,7 +93,7 @@ export default function FinalCTA({ t, colorFrom = '#a855f7', colorTo = '#ec4899'
                 >
                   {item.value}
                 </div>
-                <div className="text-xs text-[var(--text-muted)] whitespace-nowrap">
+                <div className="text-[10px] sm:text-xs text-[var(--text-muted)] leading-tight">
                   {item.label}
                 </div>
               </div>
