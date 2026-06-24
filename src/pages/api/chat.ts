@@ -3,9 +3,6 @@ import Anthropic from '@anthropic-ai/sdk';
 
 export const prerender = false;
 
-const client = new Anthropic({
-  apiKey: import.meta.env.ANTHROPIC_API_KEY ?? process.env.ANTHROPIC_API_KEY,
-});
 
 const SYSTEM_PROMPT = `Eres Gixy, el asistente virtual de GixLabs — una agencia digital especializada en ayudar a negocios a crecer en línea.
 
@@ -43,6 +40,20 @@ interface ChatMessage {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  // Resolve key at request time so runtime env vars are available
+  const apiKey = (import.meta.env.ANTHROPIC_API_KEY as string | undefined)
+    ?? process.env.ANTHROPIC_API_KEY;
+
+  if (!apiKey) {
+    console.error('[chat] ANTHROPIC_API_KEY not set');
+    return new Response(
+      JSON.stringify({ message: 'El chat no está disponible en este momento. Contáctanos en hola@gixlabs.com' }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+
+  const client = new Anthropic({ apiKey });
+
   let body: { messages: ChatMessage[] };
   try {
     body = await request.json();
@@ -83,7 +94,11 @@ export const POST: APIRoute = async ({ request }) => {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('Anthropic API error:', error);
-    return new Response(JSON.stringify({ error: 'Error connecting to AI' }), { status: 500 });
+    const msg = error instanceof Error ? error.message : String(error);
+    console.error('[chat] Anthropic error:', msg);
+    return new Response(
+      JSON.stringify({ message: `Hubo un problema técnico (${msg.slice(0, 80)}). Inténtalo de nuevo.` }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
+    );
   }
 };
