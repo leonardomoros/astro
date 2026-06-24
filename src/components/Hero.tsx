@@ -63,7 +63,11 @@ export default function Hero({ t, lang }: HeroProps) {
             <div className="flex flex-wrap items-center gap-3 mb-14">
               {/* Secondary — outline with fill-on-hover */}
               <a
-                href={t.secondaryCTAHref}
+                href="#portafolio"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('portafolio')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="
                   group inline-flex items-center gap-2
                   text-sm font-medium text-[var(--text-muted)]
