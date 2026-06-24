@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://gixlabs.com/sitemap-index.xml
