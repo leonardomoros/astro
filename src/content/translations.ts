@@ -430,10 +430,10 @@ export const translations: Record<Lang, Translations> = {
         {
           title: 'Empresa',
           links: [
-            { label: 'Portafolio', href: '/portafolio/' },
-            { label: 'Nuestro Proceso', href: '/proceso/' },
-            { label: 'Preguntas Frecuentes', href: '/preguntas-frecuentes/' },
-            { label: 'Contacto', href: '/contacto/' },
+            { label: 'Portafolio',            href: '/#portafolio' },
+            { label: 'Nuestros Servicios',    href: '/servicios/' },
+            { label: 'Preguntas Frecuentes',  href: '/preguntas-frecuentes/' },
+            { label: 'Contacto',              href: '/contacto/' },
           ],
         },
         {
@@ -769,10 +769,10 @@ export const translations: Record<Lang, Translations> = {
         {
           title: 'Company',
           links: [
-            { label: 'Portfolio', href: '/en/portfolio/' },
-            { label: 'Our Process', href: '/en/process/' },
-            { label: 'FAQs', href: '/en/faqs/' },
-            { label: 'Contact', href: '/en/contact/' },
+            { label: 'Portfolio',      href: '/en/#portafolio' },
+            { label: 'Our Services',   href: '/en/services/' },
+            { label: 'FAQs',           href: '/en/faqs/' },
+            { label: 'Contact',        href: '/en/contact/' },
           ],
         },
         {
