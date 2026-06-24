@@ -3,7 +3,9 @@ import Anthropic from '@anthropic-ai/sdk';
 
 export const prerender = false;
 
-const client = new Anthropic({ apiKey: import.meta.env.ANTHROPIC_API_KEY });
+const client = new Anthropic({
+  apiKey: import.meta.env.ANTHROPIC_API_KEY ?? process.env.ANTHROPIC_API_KEY,
+});
 
 const SYSTEM_PROMPT = `Eres Gixy, el asistente virtual de GixLabs — una agencia digital especializada en ayudar a negocios a crecer en línea.
 

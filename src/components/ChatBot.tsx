@@ -111,7 +111,7 @@ export default function ChatBot() {
         {/* Header */}
         <div
           className="flex items-center gap-3 px-4 py-3 flex-shrink-0"
-          style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}
+          style={{ background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }}
         >
           <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
             G
@@ -139,7 +139,7 @@ export default function ChatBot() {
               {msg.role === 'assistant' && (
                 <div
                   className="w-6 h-6 rounded-full flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0 mr-2 mt-0.5"
-                  style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}
+                  style={{ background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }}
                 >
                   G
                 </div>
@@ -153,8 +153,8 @@ export default function ChatBot() {
                   }
                 `}
                 style={msg.role === 'user'
-                  ? { background: 'linear-gradient(135deg, #a855f7, #ec4899)' }
-                  : { background: '#1e1e2a', border: '1px solid rgba(168,85,247,0.15)' }
+                  ? { background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }
+                  : { background: '#1e1e2a', border: '1px solid rgba(79,70,229,0.2)' }
                 }
               >
                 {msg.content}
@@ -167,13 +167,13 @@ export default function ChatBot() {
             <div className="flex justify-start">
               <div
                 className="w-6 h-6 rounded-full flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0 mr-2 mt-0.5"
-                style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}
+                style={{ background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }}
               >
                 G
               </div>
               <div
                 className="px-3.5 py-2.5 rounded-2xl rounded-tl-sm"
-                style={{ background: '#1e1e2a', border: '1px solid rgba(168,85,247,0.15)' }}
+                style={{ background: '#1e1e2a', border: '1px solid rgba(79,70,229,0.2)' }}
               >
                 <Loader2 size={16} className="text-purple-400 animate-spin" />
               </div>
@@ -187,7 +187,7 @@ export default function ChatBot() {
         {lead?.email && (
           <div
             className="mx-3 mb-2 px-3 py-2 rounded-xl text-xs text-center flex-shrink-0"
-            style={{ background: 'rgba(168,85,247,0.12)', border: '1px solid rgba(168,85,247,0.25)', color: '#c084fc' }}
+            style={{ background: 'rgba(79,70,229,0.12)', border: '1px solid rgba(79,70,229,0.25)', color: '#a5b4fc' }}
           >
             ✓ Te pondremos en contacto pronto, {lead.name ?? 'amigo/a'}.
           </div>
@@ -213,7 +213,7 @@ export default function ChatBot() {
             "
             style={{
               background: '#1e1e2a',
-              border: '1px solid rgba(168,85,247,0.2)',
+              border: '1px solid rgba(79,70,229,0.25)',
               maxHeight: '120px',
               lineHeight: '1.5',
             }}
@@ -233,7 +233,7 @@ export default function ChatBot() {
               disabled:opacity-40 disabled:cursor-not-allowed
               hover:scale-105 active:scale-95
             "
-            style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}
+            style={{ background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }}
             aria-label="Enviar"
           >
             <Send size={15} className="text-white" />
@@ -248,11 +248,11 @@ export default function ChatBot() {
           fixed bottom-5 right-4 sm:right-6 z-50
           w-14 h-14 rounded-full
           flex items-center justify-center
-          shadow-xl shadow-purple-500/30
+          shadow-xl shadow-indigo-600/30
           transition-all duration-200
           hover:scale-110 active:scale-95
         "
-        style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}
+        style={{ background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }}
         aria-label={isOpen ? 'Cerrar chat' : 'Abrir chat'}
       >
         {isOpen
