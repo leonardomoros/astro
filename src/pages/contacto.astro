@@ -1,8 +1,7 @@
 ---
-import '../styles/global.css';
-import ContactPage from '../components/ContactPage';
-import SEO from '../components/SEO.astro';
+import BaseLayout from '../components/BaseLayout.astro';
 import JsonLd from '../components/JsonLd.astro';
+import ContactPage from '../components/ContactPage';
 import seoData from '../data/seo.json';
 
 const meta = seoData.contact.es;
@@ -32,25 +31,10 @@ const contactPointSchema = {
 };
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <SEO
-      title={meta.title}
-      description={meta.description}
-      slug={meta.slug}
-      alternateSlug={meta.alternateSlug}
-      lang="es"
-    />
+<BaseLayout title={meta.title} description={meta.description} slug={meta.slug} alternateSlug={meta.alternateSlug} lang="es">
+  <Fragment slot="head">
     <JsonLd schema={breadcrumb} />
     <JsonLd schema={contactPointSchema} />
-  </head>
-  <body>
-    <ContactPage client:load />
-  </body>
-</html>
+  </Fragment>
+  <ContactPage client:load />
+</BaseLayout>

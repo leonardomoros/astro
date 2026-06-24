@@ -1,8 +1,7 @@
 ---
-import '../../../styles/global.css';
-import PaidAdsPage from '../../../components/PaidAdsPage';
-import SEO from '../../../components/SEO.astro';
+import BaseLayout from '../../../components/BaseLayout.astro';
 import JsonLd from '../../../components/JsonLd.astro';
+import PaidAdsPage from '../../../components/PaidAdsPage';
 import seoData from '../../../data/seo.json';
 import { paidAdsTranslations } from '../../../content/paidAdsTranslations';
 
@@ -13,9 +12,9 @@ const breadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home',                item: `${BASE}/en/` },
-    { '@type': 'ListItem', position: 2, name: 'Services',            item: `${BASE}/en/services/` },
-    { '@type': 'ListItem', position: 3, name: 'Paid Advertising',    item: `${BASE}/en/services/paid-advertising/` },
+    { '@type': 'ListItem', position: 1, name: 'Home',             item: `${BASE}/en/` },
+    { '@type': 'ListItem', position: 2, name: 'Services',         item: `${BASE}/en/services/` },
+    { '@type': 'ListItem', position: 3, name: 'Paid Advertising', item: `${BASE}/en/services/paid-advertising/` },
   ],
 };
 
@@ -40,26 +39,11 @@ const faqSchema = {
 };
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <SEO
-      title={meta.title}
-      description={meta.description}
-      slug={meta.slug}
-      alternateSlug={meta.alternateSlug}
-      lang="en"
-    />
+<BaseLayout title={meta.title} description={meta.description} slug={meta.slug} alternateSlug={meta.alternateSlug} lang="en">
+  <Fragment slot="head">
     <JsonLd schema={breadcrumb} />
     <JsonLd schema={serviceSchema} />
     <JsonLd schema={faqSchema} />
-  </head>
-  <body>
-    <PaidAdsPage client:load initialLang="en" />
-  </body>
-</html>
+  </Fragment>
+  <PaidAdsPage client:load initialLang="en" />
+</BaseLayout>

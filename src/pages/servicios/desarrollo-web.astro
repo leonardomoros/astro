@@ -1,22 +1,11 @@
 ---
-import '../../styles/global.css';
-import WebDevPage from '../../components/WebDevPage';
-import SEO from '../../components/SEO.astro';
+import BaseLayout from '../../components/BaseLayout.astro';
 import JsonLd from '../../components/JsonLd.astro';
+import WebDevPage from '../../components/WebDevPage';
 import seoData from '../../data/seo.json';
 import { webDevTranslations } from '../../content/webDevTranslations';
 
 const meta = seoData.webDev.es;
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: webDevTranslations.es.faq.items.map(item => ({
-    '@type': 'Question',
-    name: item.question,
-    acceptedAnswer: { '@type': 'Answer', text: item.answer },
-  })),
-};
 const BASE = 'https://gixlabs.com';
 
 const breadcrumb = {
@@ -38,28 +27,23 @@ const serviceSchema = {
   url: `${BASE}${meta.slug}`,
   areaServed: ['Venezuela', 'Estados Unidos', 'España'],
 };
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: webDevTranslations.es.faq.items.map(item => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <SEO
-      title={meta.title}
-      description={meta.description}
-      slug={meta.slug}
-      alternateSlug={meta.alternateSlug}
-      lang="es"
-    />
+<BaseLayout title={meta.title} description={meta.description} slug={meta.slug} alternateSlug={meta.alternateSlug} lang="es">
+  <Fragment slot="head">
     <JsonLd schema={breadcrumb} />
     <JsonLd schema={serviceSchema} />
     <JsonLd schema={faqSchema} />
-  </head>
-  <body>
-    <WebDevPage client:load />
-  </body>
-</html>
+  </Fragment>
+  <WebDevPage client:load />
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+import SEO from './SEO.astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
+import { Analytics } from '@vercel/analytics/astro';
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  alternateSlug: string;
+  lang: string;
+  noindex?: boolean;
+}
+
+const { title, description, slug, alternateSlug, lang, noindex = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO {title} {description} {slug} {alternateSlug} {lang} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+    <SpeedInsights />
+    <Analytics />
+  </body>
+</html>

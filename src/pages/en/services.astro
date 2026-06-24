@@ -1,60 +1,23 @@
 ---
-import '../../styles/global.css';
-import ServicesPage from '../../components/ServicesPage';
-import SEO from '../../components/SEO.astro';
+import BaseLayout from '../../components/BaseLayout.astro';
 import JsonLd from '../../components/JsonLd.astro';
+import ServicesPage from '../../components/ServicesPage';
 import seoData from '../../data/seo.json';
 
 const meta = seoData.services.en;
-
 const BASE = 'https://gixlabs.com';
 
 const servicesList = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   itemListElement: [
-    {
-      '@type': 'ListItem', position: 1,
-      item: { '@type': 'Service', name: 'Web Development', provider: { '@type': 'Organization', name: 'Gixlabs' },
-        description: 'High-performance custom websites built for speed, scalability, and conversion.',
-        url: `${BASE}/en/services/web-development/` },
-    },
-    {
-      '@type': 'ListItem', position: 2,
-      item: { '@type': 'Service', name: 'SEO Strategy', provider: { '@type': 'Organization', name: 'Gixlabs' },
-        description: 'Sustainable organic growth through technical audits, optimized content, and link building.',
-        url: `${BASE}/en/services/seo-strategy/` },
-    },
-    {
-      '@type': 'ListItem', position: 3,
-      item: { '@type': 'Service', name: 'Landing Pages', provider: { '@type': 'Organization', name: 'Gixlabs' },
-        description: 'Conversion-focused pages designed to capture leads and maximize campaign ROI.',
-        url: `${BASE}/en/services/landing-pages/` },
-    },
-    {
-      '@type': 'ListItem', position: 4,
-      item: { '@type': 'Service', name: 'Email Marketing', provider: { '@type': 'Organization', name: 'Gixlabs' },
-        description: 'Automated sequences, newsletters, and segmented campaigns that turn subscribers into customers.',
-        url: `${BASE}/en/services/email-marketing/` },
-    },
-    {
-      '@type': 'ListItem', position: 5,
-      item: { '@type': 'Service', name: 'Paid Advertising', provider: { '@type': 'Organization', name: 'Gixlabs' },
-        description: 'Google Ads and Meta Ads campaigns optimized to reduce CPA and scale your results.',
-        url: `${BASE}/en/services/paid-advertising/` },
-    },
-    {
-      '@type': 'ListItem', position: 6,
-      item: { '@type': 'Service', name: 'Web Optimization', provider: { '@type': 'Organization', name: 'Gixlabs' },
-        description: 'Performance audits, Core Web Vitals improvements, and technical fixes for existing sites.',
-        url: `${BASE}/en/services/website-optimization/` },
-    },
-    {
-      '@type': 'ListItem', position: 7,
-      item: { '@type': 'Service', name: 'UX/UI Design', provider: { '@type': 'Organization', name: 'Gixlabs' },
-        description: 'User-centered interfaces that combine aesthetics and functionality to maximize conversion.',
-        url: `${BASE}/en/services/ux-ui-design/` },
-    },
+    { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Web Development', provider: { '@type': 'Organization', name: 'Gixlabs' }, description: 'High-performance custom websites built for speed, scalability, and conversion.', url: `${BASE}/en/services/web-development/` } },
+    { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'SEO Strategy', provider: { '@type': 'Organization', name: 'Gixlabs' }, description: 'Sustainable organic growth through technical audits, optimized content, and link building.', url: `${BASE}/en/services/seo-strategy/` } },
+    { '@type': 'ListItem', position: 3, item: { '@type': 'Service', name: 'Landing Pages', provider: { '@type': 'Organization', name: 'Gixlabs' }, description: 'Conversion-focused pages designed to capture leads and maximize campaign ROI.', url: `${BASE}/en/services/landing-pages/` } },
+    { '@type': 'ListItem', position: 4, item: { '@type': 'Service', name: 'Email Marketing', provider: { '@type': 'Organization', name: 'Gixlabs' }, description: 'Automated sequences, newsletters, and segmented campaigns that turn subscribers into customers.', url: `${BASE}/en/services/email-marketing/` } },
+    { '@type': 'ListItem', position: 5, item: { '@type': 'Service', name: 'Paid Advertising', provider: { '@type': 'Organization', name: 'Gixlabs' }, description: 'Google Ads and Meta Ads campaigns optimized to reduce CPA and scale your results.', url: `${BASE}/en/services/paid-advertising/` } },
+    { '@type': 'ListItem', position: 6, item: { '@type': 'Service', name: 'Web Optimization', provider: { '@type': 'Organization', name: 'Gixlabs' }, description: 'Performance audits, Core Web Vitals improvements, and technical fixes for existing sites.', url: `${BASE}/en/services/website-optimization/` } },
+    { '@type': 'ListItem', position: 7, item: { '@type': 'Service', name: 'UX/UI Design', provider: { '@type': 'Organization', name: 'Gixlabs' }, description: 'User-centered interfaces that combine aesthetics and functionality to maximize conversion.', url: `${BASE}/en/services/ux-ui-design/` } },
   ],
 };
 
@@ -68,25 +31,10 @@ const breadcrumb = {
 };
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <SEO
-      title={meta.title}
-      description={meta.description}
-      slug={meta.slug}
-      alternateSlug={meta.alternateSlug}
-      lang="en"
-    />
+<BaseLayout title={meta.title} description={meta.description} slug={meta.slug} alternateSlug={meta.alternateSlug} lang="en">
+  <Fragment slot="head">
     <JsonLd schema={servicesList} />
     <JsonLd schema={breadcrumb} />
-  </head>
-  <body>
-    <ServicesPage client:load initialLang="en" />
-  </body>
-</html>
+  </Fragment>
+  <ServicesPage client:load initialLang="en" />
+</BaseLayout>
