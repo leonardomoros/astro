@@ -145,7 +145,7 @@ export const translations: Record<Lang, Translations> = {
       primaryCTA: 'Sesión Gratuita',
       primaryCTAHref: '/contacto/',
       secondaryCTA: 'Portafolio',
-      secondaryCTAHref: '/portafolio/',
+      secondaryCTAHref: '#portafolio',
       stats: [
         { value: '+150', label: 'Proyectos entregados' },
         { value: '98%', label: 'Satisfacción' },
@@ -483,7 +483,7 @@ export const translations: Record<Lang, Translations> = {
       primaryCTA: 'Free Consultation',
       primaryCTAHref: '/en/contact/',
       secondaryCTA: 'Portfolio',
-      secondaryCTAHref: '/en/portfolio/',
+      secondaryCTAHref: '#portafolio',
       stats: [
         { value: '+150', label: 'Projects Delivered' },
         { value: '98%', label: 'Client Satisfaction' },
