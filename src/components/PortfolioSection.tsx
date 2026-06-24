@@ -156,25 +156,6 @@ export default function PortfolioSection({ t }: PortfolioSectionProps) {
           })}
         </div>
 
-        {/* ── View all CTA ── */}
-        <div className="mt-12 flex justify-center">
-          <a
-            href={t.ctaHref}
-            className="
-              group inline-flex items-center gap-2
-              bg-gradient-to-r from-[#a855f7] to-[#ec4899]
-              text-white text-sm font-semibold
-              px-6 py-3 rounded-full
-              shadow-md shadow-purple-500/20
-              transition-all duration-200
-              hover:shadow-lg hover:shadow-purple-500/40 hover:scale-[1.03]
-              active:scale-95
-            "
-          >
-            {t.cta}
-            <ArrowUpRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </div>
 
       </div>
     </section>
