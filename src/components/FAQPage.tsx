@@ -110,7 +110,7 @@ export default function FAQPage({ initialLang = 'es' }: Props) {
 
       {/* Category chips */}
       <div className="sticky top-0 z-20 border-b" style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}>
-        <div className="container mx-auto px-4 md:px-6 py-3 flex gap-2 flex-wrap">
+        <div className="container mx-auto px-4 md:px-6 py-3 flex gap-2 flex-wrap justify-center">
           {[{ id: 'all', label: t.allLabel }, ...t.categories].map(cat => {
             const isActive = activeCategory === cat.id;
             return (
