@@ -97,6 +97,20 @@
       "alternateSlug": "/servicios/email-marketing/"
     }
   },
+  "contact": {
+    "es": {
+      "title": "Contacto — Agenda tu Sesión Gratuita | Gixlabs",
+      "description": "Agenda una sesión estratégica gratuita de 30 minutos con Gixlabs. Cuéntanos tu proyecto y transformamos tu presencia digital en un motor de crecimiento.",
+      "slug": "/contacto/",
+      "alternateSlug": "/en/contact/"
+    },
+    "en": {
+      "title": "Contact — Book Your Free Strategy Session | Gixlabs",
+      "description": "Book a free 30-minute strategy session with Gixlabs. Tell us about your project and we'll turn your digital presence into a growth engine.",
+      "slug": "/en/contact/",
+      "alternateSlug": "/contacto/"
+    }
+  },
   "faqPage": {
     "es": {
       "title": "Preguntas Frecuentes | Gixlabs",
