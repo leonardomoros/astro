@@ -5,7 +5,7 @@ export const prerender = false;
 
 const client = new Anthropic({ apiKey: import.meta.env.ANTHROPIC_API_KEY });
 
-const SYSTEM_PROMPT = `Eres GixBot, el asistente virtual de GixLabs — una agencia digital especializada en ayudar a negocios a crecer en línea.
+const SYSTEM_PROMPT = `Eres Gixy, el asistente virtual de GixLabs — una agencia digital especializada en ayudar a negocios a crecer en línea.
 
 GixLabs ofrece:
 • Desarrollo Web: Sitios modernos y rápidos con React, Next.js, Astro, WordPress, Shopify

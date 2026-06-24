@@ -15,7 +15,7 @@ interface Lead {
 
 const WELCOME: Message = {
   role: 'assistant',
-  content: '¡Hola! Soy GixBot 👋 ¿En qué puedo ayudarte hoy? Puedo contarte sobre nuestros servicios, precios o ayudarte a dar el primer paso.',
+  content: '¡Hola! Soy Gixy 👋 ¿En qué puedo ayudarte hoy? Puedo contarte sobre nuestros servicios, precios o ayudarte a dar el primer paso.',
 };
 
 export default function ChatBot() {
@@ -117,7 +117,7 @@ export default function ChatBot() {
             G
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-white font-semibold text-sm leading-tight">GixBot</p>
+            <p className="text-white font-semibold text-sm leading-tight">Gixy</p>
             <p className="text-white/70 text-xs leading-tight">Asistente de GixLabs · En línea</p>
           </div>
           <button
