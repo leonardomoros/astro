@@ -1,5 +1,42 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { MessageCircle, X, Send, Loader2 } from 'lucide-react';
+import { X, Send, Loader2 } from 'lucide-react';
+
+/* ── Gixy mascot SVG ────────────────────────────────────────────── */
+function GixyAvatar({ size = 32 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 40 40" width={size} height={size} xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gixy-g" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#4f46e5" />
+          <stop offset="100%" stopColor="#6d28d9" />
+        </linearGradient>
+      </defs>
+      {/* Ears */}
+      <polygon points="7,19 12,5 17,19"  fill="url(#gixy-g)" />
+      <polygon points="9.5,18 12,9 14.5,18" fill="#a5b4fc" opacity="0.45" />
+      <polygon points="23,19 28,5 33,19" fill="url(#gixy-g)" />
+      <polygon points="25.5,18 28,9 30.5,18" fill="#a5b4fc" opacity="0.45" />
+      {/* Head */}
+      <circle cx="20" cy="25" r="13.5" fill="url(#gixy-g)" />
+      {/* Eyes — white + pupil + shine */}
+      <circle cx="15" cy="23" r="3.2"  fill="white" />
+      <circle cx="25" cy="23" r="3.2"  fill="white" />
+      <circle cx="15.6" cy="23.5" r="2"   fill="#1e1b4b" />
+      <circle cx="25.6" cy="23.5" r="2"   fill="#1e1b4b" />
+      <circle cx="16.2" cy="22.4" r="0.75" fill="white" />
+      <circle cx="26.2" cy="22.4" r="0.75" fill="white" />
+      {/* Nose */}
+      <path d="M19.3 27.2 L20 26 L20.7 27.2 Q20 28.2 19.3 27.2Z" fill="#c4b5fd" />
+      {/* Mouth */}
+      <path d="M17.5 30 Q20 32.5 22.5 30" stroke="white" strokeWidth="1.1" fill="none" strokeLinecap="round" opacity="0.65" />
+      {/* Whiskers */}
+      <line x1="3"  y1="26" x2="16" y2="27.5" stroke="white" strokeWidth="0.65" opacity="0.4" />
+      <line x1="3"  y1="29" x2="16" y2="29"   stroke="white" strokeWidth="0.65" opacity="0.4" />
+      <line x1="24" y1="27.5" x2="37" y2="26" stroke="white" strokeWidth="0.65" opacity="0.4" />
+      <line x1="24" y1="29"   x2="37" y2="29" stroke="white" strokeWidth="0.65" opacity="0.4" />
+    </svg>
+  );
+}
 
 interface Message {
   role: 'user' | 'assistant';
@@ -113,8 +150,8 @@ export default function ChatBot() {
           className="flex items-center gap-3 px-4 py-3 flex-shrink-0"
           style={{ background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }}
         >
-          <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-            G
+          <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-white/10">
+            <GixyAvatar size={36} />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-white font-semibold text-sm leading-tight">Gixy</p>
@@ -137,11 +174,8 @@ export default function ChatBot() {
               className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               {msg.role === 'assistant' && (
-                <div
-                  className="w-6 h-6 rounded-full flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0 mr-2 mt-0.5"
-                  style={{ background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }}
-                >
-                  G
+                <div className="w-7 h-7 rounded-full overflow-hidden flex-shrink-0 mr-2 mt-0.5">
+                  <GixyAvatar size={28} />
                 </div>
               )}
               <div
@@ -165,11 +199,8 @@ export default function ChatBot() {
           {/* Typing indicator */}
           {isLoading && (
             <div className="flex justify-start">
-              <div
-                className="w-6 h-6 rounded-full flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0 mr-2 mt-0.5"
-                style={{ background: 'linear-gradient(135deg, #4f46e5, #6d28d9)' }}
-              >
-                G
+              <div className="w-7 h-7 rounded-full overflow-hidden flex-shrink-0 mr-2 mt-0.5">
+                <GixyAvatar size={28} />
               </div>
               <div
                 className="px-3.5 py-2.5 rounded-2xl rounded-tl-sm"
@@ -257,7 +288,7 @@ export default function ChatBot() {
       >
         {isOpen
           ? <X size={22} className="text-white" />
-          : <MessageCircle size={22} className="text-white" />
+          : <GixyAvatar size={34} />
         }
         {hasUnread && !isOpen && (
           <span className="absolute top-0 right-0 w-3 h-3 rounded-full bg-red-500 border-2 border-[#111117]" />
