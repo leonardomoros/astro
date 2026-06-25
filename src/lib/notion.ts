@@ -24,8 +24,7 @@ export async function createLeadInNotion(lead: LeadData): Promise<string | null>
   const body = {
     parent: { database_id: dbId },
     properties: {
-      // Only use the Title property — guaranteed to exist in any Notion DB
-      Nombre: {
+      Name: {
         title: [{ text: { content: lead.name ?? 'Sin nombre' } }],
       },
     },

@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { createLeadInNotion } from '../../lib/notion';
 
 export const prerender = false;
 
@@ -7,27 +8,27 @@ export const GET: APIRoute = async () => {
   const dbId = (import.meta.env.NOTION_DATABASE_ID as string | undefined) ?? process.env.NOTION_DATABASE_ID;
 
   if (!apiKey || !dbId) {
-    return new Response(JSON.stringify({ ok: false, NOTION_API_KEY: apiKey ? 'SET' : 'MISSING', NOTION_DATABASE_ID: dbId ?? 'MISSING' }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } });
+    return new Response(JSON.stringify({
+      ok: false,
+      NOTION_API_KEY: apiKey ? 'SET' : 'MISSING',
+      NOTION_DATABASE_ID: dbId ?? 'MISSING',
+    }), { status: 200, headers: { 'Content-Type': 'application/json' } });
   }
 
-  // Fetch the actual database to see real property names
-  const dbRes = await fetch(`https://api.notion.com/v1/databases/${dbId}`, {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Notion-Version': '2022-06-28',
-    },
-  });
-
-  const dbData = await dbRes.json() as Record<string, unknown>;
-
-  if (!dbRes.ok) {
-    return new Response(JSON.stringify({ ok: false, error: dbData }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  try {
+    const pageId = await createLeadInNotion({
+      name: 'Test Lead',
+      email: 'test@gixlabs.com',
+      service: 'Desarrollo Web',
+      company: 'Empresa Test',
+    });
+    return new Response(JSON.stringify({ ok: true, pageId }), {
+      status: 200, headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({
+      ok: false,
+      error: err instanceof Error ? err.message : String(err),
+    }), { status: 200, headers: { 'Content-Type': 'application/json' } });
   }
-
-  const properties = dbData.properties as Record<string, { type: string }>;
-  const propSummary = Object.entries(properties).map(([name, val]) => ({ name, type: val.type }));
-
-  return new Response(JSON.stringify({ ok: true, properties: propSummary, NOTION_DATABASE_ID: dbId }),
-    { status: 200, headers: { 'Content-Type': 'application/json' } });
 };
