@@ -24,9 +24,13 @@ export async function createLeadInNotion(lead: LeadData): Promise<string | null>
   const body = {
     parent: { database_id: dbId },
     properties: {
-      Name: {
-        title: [{ text: { content: lead.name ?? 'Sin nombre' } }],
-      },
+      Name:     { title:     [{ text: { content: lead.name ?? 'Sin nombre' } }] },
+      Email:    { email:     lead.email ?? null },
+      Servicio: { select:    lead.service ? { name: lead.service } : null },
+      Empresa:  { rich_text: [{ text: { content: lead.company ?? '' } }] },
+      Estado:   { select:    { name: 'Nuevo' } },
+      Fuente:   { select:    { name: lead.source ?? 'Web Chat' } },
+      Fecha:    { date:      { start: new Date().toISOString().split('T')[0] } },
     },
     // Put all other data in the page body as rich text
     children: [
