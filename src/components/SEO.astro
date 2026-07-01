@@ -15,12 +15,13 @@ const {
   slug,
   alternateSlug,
   lang,
-  ogImage = 'https://gixlabs.com/og-default.jpg',
+  ogImage = '/images/og/home-es.png',
   noindex = false,
 } = Astro.props;
 
 const BASE = 'https://gixlabs.com';
 const canonical = `${BASE}${slug}`;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${BASE}${ogImage}`;
 const esSlug = lang === 'es' ? slug : alternateSlug;
 const enSlug = lang === 'en' ? slug : alternateSlug;
 const locale  = lang === 'es' ? 'es_ES' : 'en_US';
@@ -58,14 +59,14 @@ const orgSchema = {
 <meta property="og:title"       content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url"         content={canonical} />
-<meta property="og:image"       content={ogImage} />
+<meta property="og:image"       content={ogImageUrl} />
 <meta property="og:locale"      content={locale} />
 <meta property="og:site_name"   content="Gixlabs" />
 
 <meta name="twitter:card"        content="summary_large_image" />
 <meta name="twitter:title"       content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image"       content={ogImage} />
+<meta name="twitter:image"       content={ogImageUrl} />
 
 {noindex
   ? <meta name="robots" content="noindex, nofollow" />

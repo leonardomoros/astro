@@ -11,10 +11,11 @@ interface Props {
   slug: string;
   alternateSlug: string;
   lang: 'es' | 'en';
+  ogImage?: string;
   noindex?: boolean;
 }
 
-const { title, description, slug, alternateSlug, lang, noindex = false } = Astro.props;
+const { title, description, slug, alternateSlug, lang, ogImage, noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,7 +27,7 @@ const { title, description, slug, alternateSlug, lang, noindex = false } = Astro
     <link rel="apple-touch-icon" href="/favicon.png?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <SEO {title} {description} {slug} {alternateSlug} {lang} />
+    <SEO {title} {description} {slug} {alternateSlug} {lang} {ogImage} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <slot name="head" />
   </head>

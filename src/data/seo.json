@@ -1,44 +1,50 @@
 {
   "home": {
     "es": {
-      "title": "Gixlabs — Agencia de Ingeniería Digital | Desarrollo Web, SEO y Marketing",
+      "title": "Gixlabs — Desarrollo Web, SEO y Marketing Digital",
       "description": "Construimos plataformas digitales que transforman tu presencia online en crecimiento. Desarrollo web, SEO, email marketing y publicidad pagada en un solo lugar.",
       "slug": "/",
-      "alternateSlug": "/en/"
+      "alternateSlug": "/en/",
+      "ogImage": "/images/og/home-es.png"
     },
     "en": {
-      "title": "Gixlabs — Digital Engineering Agency | Web Development, SEO & Marketing",
+      "title": "Gixlabs — Web Development, SEO & Digital Marketing",
       "description": "We build digital platforms that transform online presence into growth. Web development, SEO, email marketing, and paid advertising in one digital ecosystem.",
       "slug": "/en/",
-      "alternateSlug": "/"
+      "alternateSlug": "/",
+      "ogImage": "/images/og/home-en.png"
     }
   },
   "services": {
     "es": {
-      "title": "Servicios Digitales — Desarrollo Web, SEO, Marketing | Gixlabs",
+      "title": "Servicios Digitales — Desarrollo Web y SEO | Gixlabs",
       "description": "Todo lo que necesitas para crecer en línea: desarrollo web, estrategia SEO, email marketing, publicidad pagada y landing pages, todo en un solo lugar.",
       "slug": "/servicios/",
-      "alternateSlug": "/en/services/"
+      "alternateSlug": "/en/services/",
+      "ogImage": "/images/og/services-es.png"
     },
     "en": {
       "title": "Digital Services — Web Development, SEO, Marketing | Gixlabs",
       "description": "Everything you need to grow online: web development, SEO strategy, email marketing, paid advertising, and landing pages, all in one place.",
       "slug": "/en/services/",
-      "alternateSlug": "/servicios/"
+      "alternateSlug": "/servicios/",
+      "ogImage": "/images/og/services-en.png"
     }
   },
   "landingPages": {
     "es": {
-      "title": "Landing Pages de Alta Conversión | Diseño y Desarrollo | Gixlabs",
+      "title": "Landing Pages de Alta Conversión | Gixlabs",
       "description": "Diseñamos landing pages estratégicas que convierten visitas en clientes. A/B testing, velocidad extrema, formularios inteligentes e integración con tu CRM.",
       "slug": "/servicios/landing-pages/",
-      "alternateSlug": "/en/services/landing-pages/"
+      "alternateSlug": "/en/services/landing-pages/",
+      "ogImage": "/images/og/landing-pages-es.png"
     },
     "en": {
-      "title": "High-Converting Landing Pages | Design & Development | Gixlabs",
+      "title": "High-Converting Landing Pages | Gixlabs",
       "description": "We design strategic landing pages that turn visitors into customers. A/B testing, extreme speed, smart forms, and CRM integration.",
       "slug": "/en/services/landing-pages/",
-      "alternateSlug": "/servicios/landing-pages/"
+      "alternateSlug": "/servicios/landing-pages/",
+      "ogImage": "/images/og/landing-pages-en.png"
     }
   },
   "seoStrategy": {
@@ -46,27 +52,31 @@
       "title": "Estrategia SEO | Posicionamiento en Google | Gixlabs",
       "description": "Posicionamos tu sitio en los primeros resultados de Google con auditorías técnicas, investigación de palabras clave, SEO on-page y construcción de autoridad.",
       "slug": "/servicios/estrategia-seo/",
-      "alternateSlug": "/en/services/seo-strategy/"
+      "alternateSlug": "/en/services/seo-strategy/",
+      "ogImage": "/images/og/seo-strategy-es.png"
     },
     "en": {
       "title": "SEO Strategy | Google Rankings & Organic Traffic | Gixlabs",
       "description": "We rank your site at the top of Google with technical audits, keyword research, on-page SEO, and authority building that drive sustainable organic traffic.",
       "slug": "/en/services/seo-strategy/",
-      "alternateSlug": "/servicios/estrategia-seo/"
+      "alternateSlug": "/servicios/estrategia-seo/",
+      "ogImage": "/images/og/seo-strategy-en.png"
     }
   },
   "webOptimization": {
     "es": {
-      "title": "Optimización Web | Core Web Vitals y Lighthouse 90+ | Gixlabs",
+      "title": "Optimización Web | Core Web Vitals 90+ | Gixlabs",
       "description": "Auditamos y optimizamos tu sitio para cargar en menos de 2s, pasar Core Web Vitals y mejorar tus conversiones en +25%. Lighthouse promedio 96/100.",
       "slug": "/servicios/optimizacion-web/",
-      "alternateSlug": "/en/services/website-optimization/"
+      "alternateSlug": "/en/services/website-optimization/",
+      "ogImage": "/images/og/web-optimization-es.png"
     },
     "en": {
-      "title": "Web Optimization | Core Web Vitals & Lighthouse 90+ | Gixlabs",
+      "title": "Web Optimization | Core Web Vitals 90+ | Gixlabs",
       "description": "We audit and optimize your site to load in under 2s, pass Core Web Vitals, and improve conversions by +25%. Average Lighthouse score 96/100.",
       "slug": "/en/services/website-optimization/",
-      "alternateSlug": "/servicios/optimizacion-web/"
+      "alternateSlug": "/servicios/optimizacion-web/",
+      "ogImage": "/images/og/web-optimization-en.png"
     }
   },
   "paidAds": {
@@ -74,27 +84,31 @@
       "title": "Publicidad Pagada | Google Ads y Meta Ads | Gixlabs",
       "description": "Campañas de Google Ads y Meta Ads que reducen tu CPA en -40% y generan +320% ROAS. Gestión completa con optimización semanal y reportes en tiempo real.",
       "slug": "/servicios/publicidad-pagada/",
-      "alternateSlug": "/en/services/paid-advertising/"
+      "alternateSlug": "/en/services/paid-advertising/",
+      "ogImage": "/images/og/paid-ads-es.png"
     },
     "en": {
-      "title": "Paid Advertising | Google Ads & Meta Ads Management | Gixlabs",
+      "title": "Paid Advertising | Google & Meta Ads | Gixlabs",
       "description": "Google Ads and Meta Ads campaigns that reduce CPA by -40% and deliver +320% ROAS. Full management with weekly optimization and real-time reporting.",
       "slug": "/en/services/paid-advertising/",
-      "alternateSlug": "/servicios/publicidad-pagada/"
+      "alternateSlug": "/servicios/publicidad-pagada/",
+      "ogImage": "/images/og/paid-ads-en.png"
     }
   },
   "emailMarketing": {
     "es": {
-      "title": "Email Marketing y Automatizaciones | Campañas que Convierten | Gixlabs",
+      "title": "Email Marketing y Automatización | Gixlabs",
       "description": "Diseñamos secuencias automatizadas, newsletters y campañas segmentadas que convierten suscriptores en clientes. +45% apertura, 3× ROI, primer flujo en 48h.",
       "slug": "/servicios/email-marketing/",
-      "alternateSlug": "/en/services/email-marketing/"
+      "alternateSlug": "/en/services/email-marketing/",
+      "ogImage": "/images/og/email-marketing-es.png"
     },
     "en": {
-      "title": "Email Marketing & Automation | Campaigns That Convert | Gixlabs",
+      "title": "Email Marketing & Automation | Gixlabs",
       "description": "We design automated sequences, newsletters, and segmented campaigns that turn subscribers into customers. +45% open rate, 3× ROI, first flow live in 48h.",
       "slug": "/en/services/email-marketing/",
-      "alternateSlug": "/servicios/email-marketing/"
+      "alternateSlug": "/servicios/email-marketing/",
+      "ogImage": "/images/og/email-marketing-en.png"
     }
   },
   "contact": {
@@ -102,27 +116,31 @@
       "title": "Contacto — Agenda tu Sesión Gratuita | Gixlabs",
       "description": "Agenda una sesión estratégica gratuita de 30 minutos con Gixlabs. Cuéntanos tu proyecto y transformamos tu presencia digital en un motor de crecimiento.",
       "slug": "/contacto/",
-      "alternateSlug": "/en/contact/"
+      "alternateSlug": "/en/contact/",
+      "ogImage": "/images/og/contact-es.png"
     },
     "en": {
       "title": "Contact — Book Your Free Strategy Session | Gixlabs",
       "description": "Book a free 30-minute strategy session with Gixlabs. Tell us about your project and we'll turn your digital presence into a growth engine.",
       "slug": "/en/contact/",
-      "alternateSlug": "/contacto/"
+      "alternateSlug": "/contacto/",
+      "ogImage": "/images/og/contact-en.png"
     }
   },
   "faqPage": {
     "es": {
       "title": "Preguntas Frecuentes | Gixlabs",
-      "description": "Respuestas a las dudas más comunes sobre servicios, precios, proceso y resultados de Gixlabs. ¿No encuentras tu pregunta? Escríbenos y te respondemos el mismo día.",
+      "description": "Respuestas a las dudas más comunes sobre servicios, precios, proceso y resultados de Gixlabs. ¿No encuentras tu pregunta? Escríbenos y te respondemos hoy.",
       "slug": "/preguntas-frecuentes/",
-      "alternateSlug": "/en/faq/"
+      "alternateSlug": "/en/faq/",
+      "ogImage": "/images/og/faq-es.png"
     },
     "en": {
       "title": "Frequently Asked Questions | Gixlabs",
       "description": "Answers to the most common questions about Gixlabs services, pricing, process, and results. Can't find your question? Write to us and we'll reply the same day.",
       "slug": "/en/faq/",
-      "alternateSlug": "/preguntas-frecuentes/"
+      "alternateSlug": "/preguntas-frecuentes/",
+      "ogImage": "/images/og/faq-en.png"
     }
   },
   "uxUi": {
@@ -130,13 +148,15 @@
       "title": "Diseño UX/UI | Figma, Design System y Prototipo | Gixlabs",
       "description": "Diseñamos interfaces pixel-perfect centradas en el usuario: investigación, wireframes, prototipo Figma y design system. +38% conversión promedio en rediseños.",
       "slug": "/servicios/diseno-ux-ui/",
-      "alternateSlug": "/en/services/ux-ui-design/"
+      "alternateSlug": "/en/services/ux-ui-design/",
+      "ogImage": "/images/og/ux-ui-es.png"
     },
     "en": {
       "title": "UX/UI Design | Figma, Design System & Prototype | Gixlabs",
       "description": "We design pixel-perfect user-centered interfaces: research, wireframes, Figma prototype, and design system. +38% average conversion improvement in redesigns.",
       "slug": "/en/services/ux-ui-design/",
-      "alternateSlug": "/servicios/diseno-ux-ui/"
+      "alternateSlug": "/servicios/diseno-ux-ui/",
+      "ogImage": "/images/og/ux-ui-en.png"
     }
   },
   "webDev": {
@@ -144,13 +164,15 @@
       "title": "Desarrollo Web a Medida | Astro, React, Next.js | Gixlabs",
       "description": "Diseñamos y desarrollamos sitios web rápidos, escalables y optimizados para conversión. Código limpio, SEO técnico incluido y soporte post-lanzamiento.",
       "slug": "/servicios/desarrollo-web/",
-      "alternateSlug": "/en/services/web-development/"
+      "alternateSlug": "/en/services/web-development/",
+      "ogImage": "/images/og/web-dev-es.png"
     },
     "en": {
       "title": "Custom Web Development | Astro, React, Next.js | Gixlabs",
       "description": "We design and build fast, scalable websites optimized for conversion. Clean code, technical SEO included, and post-launch support.",
       "slug": "/en/services/web-development/",
-      "alternateSlug": "/servicios/desarrollo-web/"
+      "alternateSlug": "/servicios/desarrollo-web/",
+      "ogImage": "/images/og/web-dev-en.png"
     }
   }
 }

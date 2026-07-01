@@ -17,7 +17,7 @@ const websiteSchema = {
 };
 ---
 
-<BaseLayout title={meta.title} description={meta.description} slug={meta.slug} alternateSlug={meta.alternateSlug} lang="es">
+<BaseLayout title={meta.title} description={meta.description} slug={meta.slug} alternateSlug={meta.alternateSlug} lang="es" ogImage={meta.ogImage}>
   <Fragment slot="head">
     <JsonLd schema={websiteSchema} />
   </Fragment>

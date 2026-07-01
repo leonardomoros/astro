@@ -31,7 +31,7 @@ const contactPointSchema = {
 };
 ---
 
-<BaseLayout title={meta.title} description={meta.description} slug={meta.slug} alternateSlug={meta.alternateSlug} lang="en">
+<BaseLayout title={meta.title} description={meta.description} slug={meta.slug} alternateSlug={meta.alternateSlug} lang="en" ogImage={meta.ogImage}>
   <Fragment slot="head">
     <JsonLd schema={breadcrumb} />
     <JsonLd schema={contactPointSchema} />
