@@ -30,7 +30,7 @@ const faqSchema = {
 ---
 
 <BaseLayout title={meta.title} description={meta.description} slug={meta.slug} alternateSlug={meta.alternateSlug} lang="es" ogImage={meta.ogImage}>
-  <Fragment slot="head">
+  <Fragment slot="schema">
     <JsonLd schema={breadcrumb} />
     <JsonLd schema={faqSchema} />
   </Fragment>
