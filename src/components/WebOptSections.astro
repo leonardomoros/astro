@@ -1,0 +1,40 @@
+---
+import Nav from './Nav';
+import Footer from './Footer';
+import WebOptHero from './WebOptHero';
+import WebOptFeatures from './WebOptFeatures';
+import WebOptProcess from './WebOptProcess';
+import WebOptResults from './WebOptResults';
+import WebOptFAQ from './WebOptFAQ';
+import FinalCTA from './FinalCTA';
+import { translations } from '../content/translations';
+import { webOptimizationTranslations } from '../content/webOptimizationTranslations';
+import type { Lang } from '../content/translations';
+
+const COLOR_FROM = '#06b6d4';
+const COLOR_TO   = '#0ea5e9';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = webOptimizationTranslations[lang];
+const ht = translations[lang];
+const alternateHref = lang === 'es'
+  ? '/en/services/website-optimization/'
+  : '/servicios/optimizacion-web/';
+---
+
+<div class="min-h-screen" style="background: var(--bg); color: var(--text);">
+  <Nav lang={lang} t={ht.nav} alternateHref={alternateHref} client:idle />
+  <main>
+    <WebOptHero t={t.hero} client:idle />
+    <WebOptFeatures t={t.features} client:visible />
+    <WebOptProcess t={t.process} client:visible />
+    <WebOptResults t={t.results} client:visible />
+    <WebOptFAQ t={t.faq} client:visible />
+    <FinalCTA t={ht.finalCTA} colorFrom={COLOR_FROM} colorTo={COLOR_TO} client:visible />
+  </main>
+  <Footer t={ht.footer} client:visible />
+</div>

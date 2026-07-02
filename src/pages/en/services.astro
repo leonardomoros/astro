@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../components/BaseLayout.astro';
 import JsonLd from '../../components/JsonLd.astro';
-import ServicesPage from '../../components/ServicesPage';
+import ServicesSections from '../../components/ServicesSections.astro';
 import seoData from '../../data/seo.json';
 
 const meta = seoData.services.en;
@@ -36,5 +36,5 @@ const breadcrumb = {
     <JsonLd schema={servicesList} />
     <JsonLd schema={breadcrumb} />
   </Fragment>
-  <ServicesPage client:idle initialLang="en" />
+  <ServicesSections lang="en" />
 </BaseLayout>

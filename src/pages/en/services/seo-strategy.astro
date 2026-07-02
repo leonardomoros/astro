@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../../components/BaseLayout.astro';
 import JsonLd from '../../../components/JsonLd.astro';
-import SeoPage from '../../../components/SeoPage';
+import SeoSections from '../../../components/SeoSections.astro';
 import seoData from '../../../data/seo.json';
 import { seoPageTranslations } from '../../../content/seoPageTranslations';
 
@@ -45,5 +45,5 @@ const faqSchema = {
     <JsonLd schema={serviceSchema} />
     <JsonLd schema={faqSchema} />
   </Fragment>
-  <SeoPage client:idle initialLang="en" />
+  <SeoSections lang="en" />
 </BaseLayout>

@@ -1,0 +1,40 @@
+---
+import Nav from './Nav';
+import Footer from './Footer';
+import UxUiHero from './UxUiHero';
+import UxUiFeatures from './UxUiFeatures';
+import UxUiProcess from './UxUiProcess';
+import UxUiResults from './UxUiResults';
+import UxUiFAQ from './UxUiFAQ';
+import FinalCTA from './FinalCTA';
+import { translations } from '../content/translations';
+import { uxUiTranslations } from '../content/uxUiTranslations';
+import type { Lang } from '../content/translations';
+
+const COLOR_FROM = '#ec4899';
+const COLOR_TO   = '#a855f7';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = uxUiTranslations[lang];
+const ht = translations[lang];
+const alternateHref = lang === 'es'
+  ? '/en/services/ux-ui-design/'
+  : '/servicios/diseno-ux-ui/';
+---
+
+<div class="min-h-screen" style="background: var(--bg); color: var(--text);">
+  <Nav lang={lang} t={ht.nav} alternateHref={alternateHref} client:idle />
+  <main>
+    <UxUiHero t={t.hero} client:idle />
+    <UxUiFeatures t={t.features} client:visible />
+    <UxUiProcess t={t.process} client:visible />
+    <UxUiResults t={t.results} client:visible />
+    <UxUiFAQ t={t.faq} client:visible />
+    <FinalCTA t={ht.finalCTA} colorFrom={COLOR_FROM} colorTo={COLOR_TO} client:visible />
+  </main>
+  <Footer t={ht.footer} client:visible />
+</div>

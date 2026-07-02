@@ -1,0 +1,37 @@
+---
+import Nav from './Nav';
+import Footer from './Footer';
+import WebDevHero from './WebDevHero';
+import WebDevFeatures from './WebDevFeatures';
+import WebDevProcess from './WebDevProcess';
+import WebDevStack from './WebDevStack';
+import WebDevFAQ from './WebDevFAQ';
+import PortfolioSection from './PortfolioSection';
+import FinalCTA from './FinalCTA';
+import { translations } from '../content/translations';
+import { webDevTranslations } from '../content/webDevTranslations';
+import type { Lang } from '../content/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = webDevTranslations[lang];
+const ht = translations[lang];
+const alternateHref = lang === 'es' ? '/en/services/web-development/' : '/servicios/desarrollo-web/';
+---
+
+<div class="min-h-screen" style="background: var(--bg); color: var(--text);">
+  <Nav lang={lang} t={ht.nav} alternateHref={alternateHref} client:idle />
+  <main>
+    <WebDevHero t={t.hero} client:idle />
+    <WebDevFeatures t={t.features} client:visible />
+    <WebDevProcess t={t.process} client:visible />
+    <WebDevStack t={t.stack} client:visible />
+    <WebDevFAQ t={t.faq} client:visible />
+    <PortfolioSection t={ht.portfolioSection} client:visible />
+    <FinalCTA t={ht.finalCTA} client:visible />
+  </main>
+  <Footer t={ht.footer} client:visible />
+</div>

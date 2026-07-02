@@ -1,0 +1,35 @@
+---
+import Nav from './Nav';
+import Footer from './Footer';
+import SeoHero from './SeoHero';
+import SeoFeatures from './SeoFeatures';
+import SeoProcess from './SeoProcess';
+import SeoResults from './SeoResults';
+import SeoFAQ from './SeoFAQ';
+import FinalCTA from './FinalCTA';
+import { translations } from '../content/translations';
+import { seoPageTranslations } from '../content/seoPageTranslations';
+import type { Lang } from '../content/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = seoPageTranslations[lang];
+const ht = translations[lang];
+const alternateHref = lang === 'es' ? '/en/services/seo-strategy/' : '/servicios/estrategia-seo/';
+---
+
+<div class="min-h-screen" style="background: var(--bg); color: var(--text);">
+  <Nav lang={lang} t={ht.nav} alternateHref={alternateHref} client:idle />
+  <main>
+    <SeoHero t={t.hero} client:idle />
+    <SeoFeatures t={t.features} client:visible />
+    <SeoProcess t={t.process} client:visible />
+    <SeoResults t={t.results} client:visible />
+    <SeoFAQ t={t.faq} client:visible />
+    <FinalCTA t={ht.finalCTA} colorFrom="#10b981" colorTo="#3b82f6" client:visible />
+  </main>
+  <Footer t={ht.footer} client:visible />
+</div>

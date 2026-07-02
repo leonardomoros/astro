@@ -1,0 +1,41 @@
+---
+import Nav from './Nav';
+import Footer from './Footer';
+import ServicesHero from './ServicesHero';
+import ServicesGrid from './ServicesGrid';
+import ServicesBanner from './ServicesBanner';
+import ServicesProcess from './ServicesProcess';
+import ServicesStack from './ServicesStack';
+import ServicesExperience from './ServicesExperience';
+import ServicesBeyond from './ServicesBeyond';
+import ServicesPayments from './ServicesPayments';
+import FinalCTA from './FinalCTA';
+import { translations } from '../content/translations';
+import { servicesTranslations } from '../content/servicesTranslations';
+import type { Lang } from '../content/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = servicesTranslations[lang];
+const ht = translations[lang];
+const alternateHref = lang === 'es' ? '/en/services/' : '/servicios/';
+---
+
+<div class="min-h-screen" style="background: var(--bg); color: var(--text);">
+  <Nav lang={lang} t={ht.nav} alternateHref={alternateHref} client:idle />
+  <main>
+    <ServicesHero t={t.hero} lang={lang} client:idle />
+    <ServicesGrid t={t.servicesGrid} client:visible />
+    <ServicesBanner t={t.banner} client:visible />
+    <ServicesProcess t={t.process} client:visible />
+    <ServicesStack t={t.techStack} client:visible />
+    <ServicesExperience t={t.experience} client:visible />
+    <ServicesBeyond t={t.beyond} client:visible />
+    <ServicesPayments t={t.payments} client:visible />
+    <FinalCTA t={ht.finalCTA} client:visible />
+  </main>
+  <Footer t={ht.footer} client:visible />
+</div>

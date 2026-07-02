@@ -1,0 +1,40 @@
+---
+import Nav from './Nav';
+import Footer from './Footer';
+import EmailHero from './EmailHero';
+import EmailFeatures from './EmailFeatures';
+import EmailProcess from './EmailProcess';
+import EmailResults from './EmailResults';
+import EmailFAQ from './EmailFAQ';
+import FinalCTA from './FinalCTA';
+import { translations } from '../content/translations';
+import { emailMarketingTranslations } from '../content/emailMarketingTranslations';
+import type { Lang } from '../content/translations';
+
+const COLOR_FROM = '#f59e0b';
+const COLOR_TO   = '#f97316';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = emailMarketingTranslations[lang];
+const ht = translations[lang];
+const alternateHref = lang === 'es'
+  ? '/en/services/email-marketing/'
+  : '/servicios/email-marketing/';
+---
+
+<div class="min-h-screen" style="background: var(--bg); color: var(--text);">
+  <Nav lang={lang} t={ht.nav} alternateHref={alternateHref} client:idle />
+  <main>
+    <EmailHero t={t.hero} client:idle />
+    <EmailFeatures t={t.features} client:visible />
+    <EmailProcess t={t.process} client:visible />
+    <EmailResults t={t.results} client:visible />
+    <EmailFAQ t={t.faq} client:visible />
+    <FinalCTA t={ht.finalCTA} colorFrom={COLOR_FROM} colorTo={COLOR_TO} client:visible />
+  </main>
+  <Footer t={ht.footer} client:visible />
+</div>
