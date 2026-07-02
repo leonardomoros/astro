@@ -22,5 +22,16 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('lucide-react')) {
+              return 'lucide-icons';
+            }
+          },
+        },
+      },
+    },
   },
 });
