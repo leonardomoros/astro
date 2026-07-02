@@ -96,6 +96,7 @@ export default function ServicesGrid({ t }: ServicesGridProps) {
                   {/* CTA */}
                   <a
                     href={item.href}
+                    aria-label={`${item.cta}: ${item.title}`}
                     className="group/link inline-flex items-center gap-1.5 text-sm font-semibold transition-colors duration-200"
                     style={{ color }}
                   >
