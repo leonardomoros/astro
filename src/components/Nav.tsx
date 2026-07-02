@@ -10,8 +10,6 @@ import GixLogo from './GixLogo';
 interface NavProps {
   lang: Lang;
   t: Translations['nav'];
-  theme: 'dark' | 'light';
-  toggleTheme: () => void;
   alternateHref: string;
 }
 
@@ -19,15 +17,26 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Monitor, TrendingUp, LayoutTemplate, Mail, Target, Zap, Palette,
 };
 
-export default function Nav({ lang, t, theme, toggleTheme, alternateHref }: NavProps) {
+export default function Nav({ lang, t, alternateHref }: NavProps) {
   const [scrolled, setScrolled]               = useState(false);
   const [mobileOpen, setMobileOpen]           = useState(false);
   const [dropdownOpen, setDropdownOpen]       = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const dropdownRef = useRef<HTMLDivElement>(null);
   const closeTimer  = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const isLight = theme === 'light';
+  const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.classList.add('light');
+    } else {
+      root.classList.remove('light');
+    }
+  }, [theme]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
