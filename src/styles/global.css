@@ -2,6 +2,27 @@
 @import '@fontsource-variable/inter/standard.css';
 @import '@fontsource-variable/jetbrains-mono/wght.css';
 
+/* ── Metric-matched fallback faces (prevents layout shift on font swap) ──
+   Generated from real Inter/JetBrains Mono metrics so the system font
+   shown before the webfont loads occupies the same space. ── */
+@font-face {
+  font-family: "Inter Variable Fallback";
+  src: local("Arial");
+  size-adjust: 100%;
+  ascent-override: 96.875%;
+  descent-override: 24.1211%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "JetBrains Mono Variable Fallback";
+  src: local("Courier New");
+  size-adjust: 100%;
+  ascent-override: 102%;
+  descent-override: 30%;
+  line-gap-override: 0%;
+}
+
 /* ── Theme variables ─────────────────────────────────────────────────── */
 :root {
   --bg:          #0f0f0f;
@@ -29,7 +50,7 @@
   }
 
   body {
-    font-family: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter Variable', 'Inter Variable Fallback', 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--bg);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
@@ -44,12 +65,12 @@
 
 /* ── JetBrains Mono utility ───────────────────────────────────────────── */
 .font-jetbrains {
-  font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono Variable', 'JetBrains Mono Variable Fallback', 'JetBrains Mono', monospace;
 }
 
 /* Eyebrow label — small purple monospaced text above section headings */
 .eyebrow {
-  font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono Variable', 'JetBrains Mono Variable Fallback', 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.22em;

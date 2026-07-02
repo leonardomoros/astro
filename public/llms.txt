@@ -1,0 +1,26 @@
+# Gixlabs
+
+> Gixlabs is a digital engineering agency based in Latin America, serving clients across Latin America, the United States, and Spain. We build websites, run SEO and paid advertising campaigns, design UX/UI, and manage email marketing for businesses that want measurable growth online.
+
+Gixlabs offers an integrated set of digital services rather than one-off freelance work: web development, SEO strategy, landing pages, paid advertising (Google Ads, Meta Ads), email marketing automation, UX/UI design, and web performance optimization. The site is available in Spanish (default) and English, with every page having a matching translation at an equivalent URL.
+
+## Services
+
+- [Web Development](https://www.gixlabs.com/servicios/desarrollo-web/): Custom websites built with Astro, React, and Next.js — fast, scalable, and SEO-technical by default. (English: [Custom Web Development](https://www.gixlabs.com/en/services/web-development/))
+- [SEO Strategy](https://www.gixlabs.com/servicios/estrategia-seo/): Technical audits, keyword research, on-page SEO, and authority building to rank in Google's top results. (English: [SEO Strategy](https://www.gixlabs.com/en/services/seo-strategy/))
+- [Landing Pages](https://www.gixlabs.com/servicios/landing-pages/): High-conversion landing pages with A/B testing, smart forms, and CRM integration. (English: [High-Converting Landing Pages](https://www.gixlabs.com/en/services/landing-pages/))
+- [Paid Advertising](https://www.gixlabs.com/servicios/publicidad-pagada/): Google Ads and Meta Ads campaign management with weekly optimization and real-time reporting. (English: [Paid Advertising](https://www.gixlabs.com/en/services/paid-advertising/))
+- [Email Marketing](https://www.gixlabs.com/servicios/email-marketing/): Automated sequences, newsletters, and segmented campaigns that convert subscribers into customers. (English: [Email Marketing & Automation](https://www.gixlabs.com/en/services/email-marketing/))
+- [UX/UI Design](https://www.gixlabs.com/servicios/diseno-ux-ui/): User-centered interface design, from research and wireframes to Figma prototypes and design systems. (English: [UX/UI Design](https://www.gixlabs.com/en/services/ux-ui-design/))
+- [Web Optimization](https://www.gixlabs.com/servicios/optimizacion-web/): Performance audits and Core Web Vitals fixes for existing sites. (English: [Web Optimization](https://www.gixlabs.com/en/services/website-optimization/))
+- [All Services Overview](https://www.gixlabs.com/servicios/): (English: [Services](https://www.gixlabs.com/en/services/))
+
+## Company
+
+- [Home](https://www.gixlabs.com/): Overview of Gixlabs, portfolio, and results. (English: [Home](https://www.gixlabs.com/en/))
+- [Contact](https://www.gixlabs.com/contacto/): Book a free strategy session. (English: [Contact](https://www.gixlabs.com/en/contact/))
+- [FAQ](https://www.gixlabs.com/preguntas-frecuentes/): Common questions about services, pricing, process, and results. (English: [FAQ](https://www.gixlabs.com/en/faq/))
+
+## Contact
+
+Email: hello@gixlabs.com
