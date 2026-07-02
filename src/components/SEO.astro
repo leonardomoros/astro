@@ -19,7 +19,7 @@ const {
   noindex = false,
 } = Astro.props;
 
-const BASE = 'https://gixlabs.com';
+const BASE = 'https://www.gixlabs.com';
 const canonical = `${BASE}${slug}`;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${BASE}${ogImage}`;
 const esSlug = lang === 'es' ? slug : alternateSlug;

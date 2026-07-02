@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  site: 'https://gixlabs.com',
+  site: 'https://www.gixlabs.com',
   adapter: vercel(),
   integrations: [
     react(),
